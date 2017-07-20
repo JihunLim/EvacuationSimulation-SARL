@@ -1,0 +1,30 @@
+/** 
+ * 
+ */
+package EvacGUI.Skill
+
+import EvacGUI.Capacity.Move
+import io.sarl.core.Logging
+
+/** 
+ * @author User
+ * 
+ */
+skill Walk implements Move {
+	uses Logging
+	def speed {
+		
+	}
+	
+	def install {
+		// Function invoked when the skill is installed in the owner.
+		// You should put all the initialization statements in this block of code.
+		info("Installing the skill")
+	}
+
+	def uninstall {
+		// Function invoked when the skill is uninstalled from the owner.
+		// You should put all the resource release statements in this block of code.
+		info("Uninstalling the skill")
+	}
+}

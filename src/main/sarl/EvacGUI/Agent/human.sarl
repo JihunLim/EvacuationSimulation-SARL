@@ -1,0 +1,113 @@
+/** 
+ * 
+ */
+package EvacGUI.Agent
+
+import EvacGUI.Behaviors.SimulStart
+import EvacGUI.Capacity.Move
+import EvacGUI.Skill.Walk
+import io.sarl.core.AgentKilled
+import io.sarl.core.AgentSpawned
+import io.sarl.core.ContextJoined
+import io.sarl.core.ContextLeft
+import io.sarl.core.DefaultContextInteractions
+import io.sarl.core.Destroy
+import io.sarl.core.Initialize
+import io.sarl.core.Logging
+import io.sarl.core.MemberJoined
+import io.sarl.core.MemberLeft
+
+//import EvacGUI.Agent.test
+
+/** 
+ * @author User
+ * 
+ */
+ 
+agent human_child_male {
+	uses Logging, DefaultContextInteractions
+	
+	var life : int = 100
+	var strength : int = 30
+	var age : int
+	var sex : String // male or female
+	var emotion : int
+	//var test1 = new test()
+	
+	on SimulStart [occurrence.mode == 1] {
+		// start when mode is 1
+		println("mode is " + occurrence.mode)
+		println("agent which is " + this.ID + " is spawned!")
+		//set initialize the variables
+		life = 100
+		
+		// set Skill of this agent
+		setSkill(new Walk, Move)
+		
+		
+	}
+
+	on Initialize {
+		// Event trigger before the agent begin to live or to be used.
+		// You should put all the initialization statements in this block of code.
+		info("The agent was started.")
+//		life = test::testint
+//		var aa = new test
+//		life = aa.aaaaa
+//	    aa.test11
+//		aa.abc8
+		
+		
+	}
+
+	on Destroy {
+		// Event trigger when the agent is destroyed from the system.
+		// You should put all the resource releasing statements in this block of code.
+		info("The agent was stopped.")
+	}
+
+	on AgentSpawned {
+		// A new agent has been spawned in our context.
+	}
+
+	on AgentKilled {
+		// A new agent has been killed in our context.
+	}
+
+	on ContextJoined {
+		// Event trigger when an agent of the level joins a shared context.
+		// Sent to a agent of the same level.
+	}
+
+	on ContextLeft {
+		// Event trigger when an agent of the level jleaves a shared context.
+		// Sent to a agent of the same level.
+	}
+
+	on MemberJoined {
+		// Event trigger when an agent joins one of our shared super-holons.
+		// Sent to all members of the considered super-holon.
+	}
+
+	on MemberLeft {
+		// Event trigger when an agent leaves one of our shared super-holons.
+		// Sent to all members of the considered super-holon.
+	}
+}
+
+agent human_child_female {
+	uses Logging, DefaultContextInteractions
+
+	var life : int = 80
+	var strength : int = 15
+	var age : int
+	var sex : String // male or female
+	var emotion : int
+
+	on SimulStart [occurrence.mode == 1] {
+		// start when mode is 1
+		println("mode is " + occurrence.mode)
+		println("agent which is " + this.ID + " is spawned!")
+		// initialize agent
+	}
+}

@@ -1,0 +1,26 @@
+package EvacGUI.Behaviors
+
+event Dead{
+	
+}
+
+event Escape {
+	
+}
+
+event Here {
+	
+}
+
+event SimulStart {
+	val mode : int
+
+	new(mode : int) {
+		this.mode = mode
+
+	}
+}
+
+event StopSimul {
+	
+}

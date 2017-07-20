@@ -1,0 +1,125 @@
+/** 
+ * 
+ */
+package EvacGUI.Agent
+
+import EvacGUI.Behaviors.Dead
+import EvacGUI.Behaviors.Escape
+import EvacGUI.Behaviors.Here
+import EvacGUI.Behaviors.SimulStart
+import EvacGUI.Behaviors.StopSimul
+import io.sarl.core.AgentKilled
+import io.sarl.core.AgentSpawned
+import io.sarl.core.Behaviors
+import io.sarl.core.ContextJoined
+import io.sarl.core.ContextLeft
+import io.sarl.core.Destroy
+import io.sarl.core.Initialize
+import io.sarl.core.InnerContextAccess
+import io.sarl.core.Lifecycle
+import io.sarl.core.Logging
+import io.sarl.core.MemberJoined
+import io.sarl.core.MemberLeft
+import io.sarl.core.Schedules
+
+/** 
+ * @author User
+ * 
+ */
+agent Manager {
+	uses Logging, InnerContextAccess, Behaviors, Lifecycle, Schedules, Behaviors
+
+	var isSimulOpened = true
+	var hasHuman = false
+	var livedManCount : int
+	var deadHuman : int = 0
+	var escapeHuman : int = 0
+
+	on Initialize {
+		// Event trigger before the agent begin to live or to be used.
+		// You should put all the initialization statements in this block of code.
+		info("The agent was started.")
+		
+		// set the proportion
+		for (i : 1 .. 5) { // 1 to 5
+			spawnInContext(typeof(human_child_male), getInnerContext)
+		}
+
+		wake(new SimulStart(1))
+		val waitTask = task("wait-task")
+		waitTask.every(1000) [
+			synchronized (this) {
+				if (!isSimulOpened) {
+					if (!hasMemberAgent) {
+						waitTask.cancel
+						killMe
+					}
+				} else {
+					if (!hasHuman) { // there are no people in the building except the dead
+						isSimulOpened = false
+						// print the information who escaped people or dead people etc.
+						println("the number of man who lived from the hell is : " + livedManCount)
+
+						wake(new StopSimul)
+					}
+					hasHuman = false
+
+				}
+			}
+		]
+	}
+
+	on Here [isSimulOpened] {
+		synchronized (this) {
+			hasHuman = true
+
+		}
+	}
+
+	on Dead [isSimulOpened] {
+		synchronized (this) {
+			deadHuman += 1
+		}
+	}
+
+	on Escape [isSimulOpened] {
+		synchronized (this) {
+			escapeHuman += 1
+		}
+	}
+
+	on Destroy {
+		// Event trigger when the agent is destroyed from the system.
+		// You should put all the resource releasing statements in this block of code.
+		info("The agent was stopped.")
+	}
+
+	on AgentSpawned {
+		// A new agent has been spawned in our context.
+		println("Manager agent is spawned!")
+	}
+
+	on AgentKilled {
+		// A new agent has been killed in our context.
+	}
+
+	on ContextJoined {
+		// Event trigger when an agent of the level joins a shared context.
+		// Sent to a agent of the same level.
+	}
+
+	on ContextLeft {
+		// Event trigger when an agent of the level jleaves a shared context.
+		// Sent to a agent of the same level.
+	}
+
+	on MemberJoined {
+		// Event trigger when an agent joins one of our shared super-holons.
+		// Sent to all members of the considered super-holon.
+	}
+
+	on MemberLeft {
+		// Event trigger when an agent leaves one of our shared super-holons.
+		// Sent to all members of the considered super-holon.
+	}
+}
