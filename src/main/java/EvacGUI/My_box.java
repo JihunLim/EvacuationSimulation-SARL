@@ -1,16 +1,24 @@
 package EvacGUI;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Rectangle;
+
+import EvacGUI.Agent.human_child_male;
 class My_box extends Rectangle
 {
+	
 	int testint = 4;
+	
     //default vars
     /*
      * x,y,width,height
      */
+	
     public My_box(int x1,int y,int width,int height)
     {
         super(x1,y,width,height);
+        human_child_male d = new human_child_male(null, null);
+        
     }
     
     

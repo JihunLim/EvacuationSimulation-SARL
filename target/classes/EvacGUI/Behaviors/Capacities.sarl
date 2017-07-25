@@ -8,6 +8,9 @@ package EvacGUI.Behaviors
  * 
  */
 capacity Move {
-	def speed
+	def Walk
+	def Run
 
 }
+
+

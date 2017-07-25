@@ -1,21 +1,24 @@
 /** 
  * 
  */
-package EvacGUI.Skill
+package EvacGUI.Behaviors
 
-import EvacGUI.Capacity.Move
 import io.sarl.core.Logging
 
 /** 
  * @author User
  * 
  */
-skill Walk implements Move {
+skill MoveSkills implements Move {
 	uses Logging
-	def speed {
-		
+
+	def Walk {
 	}
-	
+
+	def Run {
+		info("Running!")
+	}
+
 	def install {
 		// Function invoked when the skill is installed in the owner.
 		// You should put all the initialization statements in this block of code.

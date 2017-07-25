@@ -3,11 +3,13 @@
  */
 package EvacGUI.Agent
 
+import EvacGUI.Behaviors.Move
+import EvacGUI.Behaviors.MoveSkills
 import EvacGUI.Behaviors.SimulStart
-import EvacGUI.Capacity.Move
-import EvacGUI.Skill.Walk
+import EvacGUI.Behaviors.YMBehavior
 import io.sarl.core.AgentKilled
 import io.sarl.core.AgentSpawned
+import io.sarl.core.Behaviors
 import io.sarl.core.ContextJoined
 import io.sarl.core.ContextLeft
 import io.sarl.core.DefaultContextInteractions
@@ -25,7 +27,7 @@ import io.sarl.core.MemberLeft
  */
  
 agent human_child_male {
-	uses Logging, DefaultContextInteractions
+	uses Logging, DefaultContextInteractions, Behaviors
 	
 	var life : int = 100
 	var strength : int = 30
@@ -34,15 +36,28 @@ agent human_child_male {
 	var emotion : int
 	//var test1 = new test()
 	
+	static def c8c8() {
+		
+	}
+	
+	def c8c8c8(){
+		
+	}
+	
 	on SimulStart [occurrence.mode == 1] {
 		// start when mode is 1
-		println("mode is " + occurrence.mode)
+		//println("mode is " + occurrence.mode)
 		println("agent which is " + this.ID + " is spawned!")
 		//set initialize the variables
 		life = 100
 		
 		// set Skill of this agent
-		setSkill(new Walk, Move)
+		setSkill(new MoveSkills, Move)
+		//setSkill(new Watch, See)
+		
+		// set the behavior
+		var beh = new YMBehavior(this)
+		registerBehavior(beh)
 		
 		
 	}
@@ -50,7 +65,7 @@ agent human_child_male {
 	on Initialize {
 		// Event trigger before the agent begin to live or to be used.
 		// You should put all the initialization statements in this block of code.
-		info("The agent was started.")
+		//info("The agent was started.")
 //		life = test::testint
 //		var aa = new test
 //		life = aa.aaaaa

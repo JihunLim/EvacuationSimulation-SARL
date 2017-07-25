@@ -14,7 +14,7 @@ event Here {
 
 event SimulStart {
 	val mode : int
-
+	// mode 1 -> escape ring, 2 -> fire
 	new(mode : int) {
 		this.mode = mode
 

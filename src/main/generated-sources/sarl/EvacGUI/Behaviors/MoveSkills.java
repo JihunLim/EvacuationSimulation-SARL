@@ -1,6 +1,6 @@
-package EvacGUI.Skill;
+package EvacGUI.Behaviors;
 
-import EvacGUI.Capacity.Move;
+import EvacGUI.Behaviors.Move;
 import io.sarl.core.Logging;
 import io.sarl.lang.annotation.ImportedCapacityFeature;
 import io.sarl.lang.annotation.SarlElementType;
@@ -19,8 +19,13 @@ import org.eclipse.xtext.xbase.lib.Pure;
 @SarlSpecification("0.5")
 @SarlElementType(19)
 @SuppressWarnings("all")
-public class Walk extends Skill implements Move {
-  public void speed() {
+public class MoveSkills extends Skill implements Move {
+  public void Walk() {
+  }
+  
+  public void Run() {
+    Logging _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER = this.$castSkill(Logging.class, (this.$CAPACITY_USE$IO_SARL_CORE_LOGGING == null || this.$CAPACITY_USE$IO_SARL_CORE_LOGGING.get() == null) ? (this.$CAPACITY_USE$IO_SARL_CORE_LOGGING = this.$getSkill(Logging.class)) : this.$CAPACITY_USE$IO_SARL_CORE_LOGGING);
+    _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER.info("Running!");
   }
   
   public void install() {
@@ -49,12 +54,12 @@ public class Walk extends Skill implements Move {
   }
   
   @SyntheticMember
-  public Walk() {
+  public MoveSkills() {
     super();
   }
   
   @SyntheticMember
-  public Walk(final Agent agent) {
+  public MoveSkills(final Agent agent) {
     super(agent);
   }
 }
