@@ -3,6 +3,8 @@
  */
 package EvacGUI.Agent
 
+import EvacGUI.Behaviors.Escape
+import EvacGUI.Behaviors.EscapeSkills
 import EvacGUI.Behaviors.Fire
 import EvacGUI.Behaviors.Move
 import EvacGUI.Behaviors.MoveSkills
@@ -52,8 +54,9 @@ agent human_child_male {
 		//set initialize the variables
 		life = 100
 		
-		// set Skill of this agent
-		//setSkill(new MoveSkills, Move)
+		// implements the skills & capacity!
+		setSkill(new MoveSkills, Move)
+		setSkill(new EscapeSkills, Escape)
 		//setSkill(new Watch, See)
 		
 		// set the behavior

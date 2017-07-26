@@ -1,5 +1,6 @@
 package EvacGUI.Behaviors;
 
+import EvacGUI.Behaviors.Escape;
 import EvacGUI.Behaviors.Fire;
 import EvacGUI.Behaviors.Move;
 import io.sarl.core.AgentKilled;
@@ -37,6 +38,8 @@ public class YMBehavior extends Behavior {
     Logging _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER = this.$castSkill(Logging.class, (this.$CAPACITY_USE$IO_SARL_CORE_LOGGING == null || this.$CAPACITY_USE$IO_SARL_CORE_LOGGING.get() == null) ? (this.$CAPACITY_USE$IO_SARL_CORE_LOGGING = this.$getSkill(Logging.class)) : this.$CAPACITY_USE$IO_SARL_CORE_LOGGING);
     _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER.info("Building is burnning!!");
     Move move = this.<Move>getSkill(Move.class);
+    Escape escape = this.<Escape>getSkill(Escape.class);
+    escape.Escape();
     move.Run();
   }
   

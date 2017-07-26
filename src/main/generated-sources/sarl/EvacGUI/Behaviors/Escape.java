@@ -10,17 +10,17 @@ import io.sarl.lang.core.Capacity;
 @SarlElementType(17)
 @SuppressWarnings("all")
 public interface Escape extends Capacity {
-  public abstract void escape();
+  public abstract void Escape();
   
   public static class ContextAwareCapacityWrapper<C extends Escape> extends Capacity.ContextAwareCapacityWrapper<C> implements Escape {
     public ContextAwareCapacityWrapper(final C capacity, final AgentTrait caller) {
       super(capacity, caller);
     }
     
-    public void escape() {
+    public void Escape() {
       try {
         ensureCallerInLocalThread();
-        this.capacity.escape();
+        this.capacity.Escape();
       } finally {
         resetCallerInLocalThread();
       }

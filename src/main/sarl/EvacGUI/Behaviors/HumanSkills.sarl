@@ -7,8 +7,8 @@ import io.sarl.core.Logging
 
 /** 
  * @author User
- * 
  */
+ 
 skill MoveSkills implements Move {
 	uses Logging
 
@@ -36,8 +36,8 @@ skill MoveSkills implements Move {
 skill EscapeSkills implements Escape {
 	uses Logging
 	
-	def escape {
-		
+	def Escape {
+		info("Escaping!")
 	}
 	
 }
