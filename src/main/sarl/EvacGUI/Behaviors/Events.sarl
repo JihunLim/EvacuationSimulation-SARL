@@ -1,14 +1,14 @@
 package EvacGUI.Behaviors
 
-event Dead{
+event A_Dead{
 	
 }
 
-event Escape {
+event A_Escape {
 	
 }
 
-event Here {
+event A_Here {
 	
 }
 
@@ -22,5 +22,9 @@ event SimulStart {
 }
 
 event StopSimul {
+	
+}
+
+event Fire{
 	
 }

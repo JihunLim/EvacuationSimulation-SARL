@@ -9,14 +9,14 @@ import io.sarl.lang.core.Event;
 @SarlSpecification("0.5")
 @SarlElementType(13)
 @SuppressWarnings("all")
-public class Dead extends Event {
+public class A_Escape extends Event {
   @SyntheticMember
-  public Dead() {
+  public A_Escape() {
     super();
   }
   
   @SyntheticMember
-  public Dead(final Address source) {
+  public A_Escape(final Address source) {
     super(source);
   }
   

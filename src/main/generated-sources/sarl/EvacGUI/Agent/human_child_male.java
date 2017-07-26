@@ -1,7 +1,6 @@
 package EvacGUI.Agent;
 
-import EvacGUI.Behaviors.Move;
-import EvacGUI.Behaviors.MoveSkills;
+import EvacGUI.Behaviors.Fire;
 import EvacGUI.Behaviors.SimulStart;
 import EvacGUI.Behaviors.YMBehavior;
 import io.sarl.core.AgentKilled;
@@ -63,11 +62,12 @@ public class human_child_male extends Agent {
     String _plus_1 = (_plus + " is spawned!");
     InputOutput.<String>println(_plus_1);
     this.life = 100;
-    MoveSkills _moveSkills = new MoveSkills();
-    this.<MoveSkills>setSkill(_moveSkills, Move.class);
     YMBehavior beh = new YMBehavior(this);
     Behaviors _$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS$CALLER = this.$castSkill(Behaviors.class, (this.$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS == null || this.$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS.get() == null) ? (this.$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS = this.$getSkill(Behaviors.class)) : this.$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS);
     _$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS$CALLER.registerBehavior(beh);
+    DefaultContextInteractions _$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER = this.$castSkill(DefaultContextInteractions.class, (this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS == null || this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS.get() == null) ? (this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS = this.$getSkill(DefaultContextInteractions.class)) : this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS);
+    Fire _fire = new Fire();
+    _$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER.emit(_fire, null);
   }
   
   @SyntheticMember

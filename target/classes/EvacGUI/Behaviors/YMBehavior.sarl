@@ -12,19 +12,23 @@ import io.sarl.core.Initialize
 import io.sarl.core.Logging
 import io.sarl.core.MemberJoined
 import io.sarl.core.MemberLeft
+
 /** 
  * @author User
- * 
- */
+ **/
+ 
 behavior YMBehavior {
 	uses Logging
 	
-	on SimulStart [occurrence.mode == 1] {
-		info("hear the simulstart alarm in the behavior")
+	on Fire {
+		info("Building is burnning!!")
 		var move = getSkill(Move)
+		//var escape = getSkill(Escape)
+		//escape.Escape
 		move.Run
+
 	}
-	
+
 	on Initialize {
 		// Event trigger before the behavior begin to live or to be used.
 		// You should put all the initialization statements in this block of code.

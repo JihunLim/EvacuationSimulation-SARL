@@ -9,14 +9,14 @@ import io.sarl.lang.core.Event;
 @SarlSpecification("0.5")
 @SarlElementType(13)
 @SuppressWarnings("all")
-public class Here extends Event {
+public class A_Here extends Event {
   @SyntheticMember
-  public Here() {
+  public A_Here() {
     super();
   }
   
   @SyntheticMember
-  public Here(final Address source) {
+  public A_Here(final Address source) {
     super(source);
   }
   

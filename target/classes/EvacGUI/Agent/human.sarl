@@ -3,6 +3,7 @@
  */
 package EvacGUI.Agent
 
+import EvacGUI.Behaviors.Fire
 import EvacGUI.Behaviors.Move
 import EvacGUI.Behaviors.MoveSkills
 import EvacGUI.Behaviors.SimulStart
@@ -52,15 +53,19 @@ agent human_child_male {
 		life = 100
 		
 		// set Skill of this agent
-		setSkill(new MoveSkills, Move)
+		//setSkill(new MoveSkills, Move)
 		//setSkill(new Watch, See)
 		
 		// set the behavior
 		var beh = new YMBehavior(this)
 		registerBehavior(beh)
 		
+		// start the fire 
+		emit(new Fire, null)
 		
 	}
+	
+	
 
 	on Initialize {
 		// Event trigger before the agent begin to live or to be used.

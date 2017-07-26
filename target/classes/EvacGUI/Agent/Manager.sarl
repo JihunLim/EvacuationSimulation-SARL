@@ -3,9 +3,9 @@
  */
 package EvacGUI.Agent
 
-import EvacGUI.Behaviors.Dead
-import EvacGUI.Behaviors.Escape
-import EvacGUI.Behaviors.Here
+import EvacGUI.Behaviors.A_Dead
+import EvacGUI.Behaviors.A_Escape
+import EvacGUI.Behaviors.A_Here
 import EvacGUI.Behaviors.SimulStart
 import EvacGUI.Behaviors.StopSimul
 import io.sarl.core.AgentKilled
@@ -45,7 +45,7 @@ agent Manager {
 			spawnInContext(typeof(human_child_male), getInnerContext)
 		}
 
-		wake(new SimulStart(1))
+		wake(new SimulStart(1))  // start the evacuation simulation with the mode 1
 		val waitTask = task("wait-task")
 		waitTask.every(1000) [
 			synchronized (this) {
@@ -69,20 +69,20 @@ agent Manager {
 		]
 	}
 
-	on Here [isSimulOpened] {
+	on A_Here [isSimulOpened] {
 		synchronized (this) {
 			hasHuman = true
 
 		}
 	}
 
-	on Dead [isSimulOpened] {
+	on A_Dead [isSimulOpened] {
 		synchronized (this) {
 			deadHuman += 1
 		}
 	}
 
-	on Escape [isSimulOpened] {
+	on A_Escape [isSimulOpened] {
 		synchronized (this) {
 			escapeHuman += 1
 		}
@@ -96,7 +96,7 @@ agent Manager {
 
 	on AgentSpawned {
 		// A new agent has been spawned in our context.
-		println("Manager agent is spawned!")
+		//println("Manager agent is spawned!")
 	}
 
 	on AgentKilled {

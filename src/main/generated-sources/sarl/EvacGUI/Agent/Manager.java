@@ -1,9 +1,9 @@
 package EvacGUI.Agent;
 
 import EvacGUI.Agent.human_child_male;
-import EvacGUI.Behaviors.Dead;
-import EvacGUI.Behaviors.Escape;
-import EvacGUI.Behaviors.Here;
+import EvacGUI.Behaviors.A_Dead;
+import EvacGUI.Behaviors.A_Escape;
+import EvacGUI.Behaviors.A_Here;
 import EvacGUI.Behaviors.SimulStart;
 import EvacGUI.Behaviors.StopSimul;
 import io.sarl.core.AgentKilled;
@@ -100,7 +100,7 @@ public class Manager extends Agent {
   }
   
   @SyntheticMember
-  private void $behaviorUnit$Here$1(final Here occurrence) {
+  private void $behaviorUnit$A_Here$1(final A_Here occurrence) {
     synchronized (this) {
       this.hasHuman = true;
     }
@@ -108,12 +108,12 @@ public class Manager extends Agent {
   
   @SyntheticMember
   @Pure
-  private boolean $behaviorUnitGuard$Here$1(final Here it, final Here occurrence) {
+  private boolean $behaviorUnitGuard$A_Here$1(final A_Here it, final A_Here occurrence) {
     return this.isSimulOpened;
   }
   
   @SyntheticMember
-  private void $behaviorUnit$Dead$2(final Dead occurrence) {
+  private void $behaviorUnit$A_Dead$2(final A_Dead occurrence) {
     synchronized (this) {
       int _deadHuman = this.deadHuman;
       this.deadHuman = (_deadHuman + 1);
@@ -122,12 +122,12 @@ public class Manager extends Agent {
   
   @SyntheticMember
   @Pure
-  private boolean $behaviorUnitGuard$Dead$2(final Dead it, final Dead occurrence) {
+  private boolean $behaviorUnitGuard$A_Dead$2(final A_Dead it, final A_Dead occurrence) {
     return this.isSimulOpened;
   }
   
   @SyntheticMember
-  private void $behaviorUnit$Escape$3(final Escape occurrence) {
+  private void $behaviorUnit$A_Escape$3(final A_Escape occurrence) {
     synchronized (this) {
       int _escapeHuman = this.escapeHuman;
       this.escapeHuman = (_escapeHuman + 1);
@@ -136,7 +136,7 @@ public class Manager extends Agent {
   
   @SyntheticMember
   @Pure
-  private boolean $behaviorUnitGuard$Escape$3(final Escape it, final Escape occurrence) {
+  private boolean $behaviorUnitGuard$A_Escape$3(final A_Escape it, final A_Escape occurrence) {
     return this.isSimulOpened;
   }
   
@@ -148,7 +148,6 @@ public class Manager extends Agent {
   
   @SyntheticMember
   private void $behaviorUnit$AgentSpawned$5(final AgentSpawned occurrence) {
-    InputOutput.<String>println("Manager agent is spawned!");
   }
   
   @SyntheticMember
@@ -256,11 +255,11 @@ public class Manager extends Agent {
   
   @SyntheticMember
   @PerceptGuardEvaluator
-  private void $guardEvaluator$Here(final Here occurrence, final Collection<Runnable> ___SARLlocal_runnableCollection) {
+  private void $guardEvaluator$A_Dead(final A_Dead occurrence, final Collection<Runnable> ___SARLlocal_runnableCollection) {
     assert occurrence != null;
     assert ___SARLlocal_runnableCollection != null;
-    if ($behaviorUnitGuard$Here$1(occurrence, occurrence)) {
-      ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$Here$1(occurrence));
+    if ($behaviorUnitGuard$A_Dead$2(occurrence, occurrence)) {
+      ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$A_Dead$2(occurrence));
     }
   }
   
@@ -298,21 +297,21 @@ public class Manager extends Agent {
   
   @SyntheticMember
   @PerceptGuardEvaluator
-  private void $guardEvaluator$Dead(final Dead occurrence, final Collection<Runnable> ___SARLlocal_runnableCollection) {
+  private void $guardEvaluator$A_Escape(final A_Escape occurrence, final Collection<Runnable> ___SARLlocal_runnableCollection) {
     assert occurrence != null;
     assert ___SARLlocal_runnableCollection != null;
-    if ($behaviorUnitGuard$Dead$2(occurrence, occurrence)) {
-      ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$Dead$2(occurrence));
+    if ($behaviorUnitGuard$A_Escape$3(occurrence, occurrence)) {
+      ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$A_Escape$3(occurrence));
     }
   }
   
   @SyntheticMember
   @PerceptGuardEvaluator
-  private void $guardEvaluator$Escape(final Escape occurrence, final Collection<Runnable> ___SARLlocal_runnableCollection) {
+  private void $guardEvaluator$A_Here(final A_Here occurrence, final Collection<Runnable> ___SARLlocal_runnableCollection) {
     assert occurrence != null;
     assert ___SARLlocal_runnableCollection != null;
-    if ($behaviorUnitGuard$Escape$3(occurrence, occurrence)) {
-      ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$Escape$3(occurrence));
+    if ($behaviorUnitGuard$A_Here$1(occurrence, occurrence)) {
+      ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$A_Here$1(occurrence));
     }
   }
   

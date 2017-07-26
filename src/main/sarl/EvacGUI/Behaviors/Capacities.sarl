@@ -7,10 +7,13 @@ package EvacGUI.Behaviors
  * @author User
  * 
  */
+ 
 capacity Move {
 	def Walk
 	def Run
-
 }
 
+capacity Escape {
+	def escape
+}
 

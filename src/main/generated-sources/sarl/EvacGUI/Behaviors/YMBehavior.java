@@ -1,7 +1,7 @@
 package EvacGUI.Behaviors;
 
+import EvacGUI.Behaviors.Fire;
 import EvacGUI.Behaviors.Move;
-import EvacGUI.Behaviors.SimulStart;
 import io.sarl.core.AgentKilled;
 import io.sarl.core.AgentSpawned;
 import io.sarl.core.ContextJoined;
@@ -33,17 +33,11 @@ import org.eclipse.xtext.xbase.lib.Pure;
 @SuppressWarnings("all")
 public class YMBehavior extends Behavior {
   @SyntheticMember
-  private void $behaviorUnit$SimulStart$0(final SimulStart occurrence) {
+  private void $behaviorUnit$Fire$0(final Fire occurrence) {
     Logging _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER = this.$castSkill(Logging.class, (this.$CAPACITY_USE$IO_SARL_CORE_LOGGING == null || this.$CAPACITY_USE$IO_SARL_CORE_LOGGING.get() == null) ? (this.$CAPACITY_USE$IO_SARL_CORE_LOGGING = this.$getSkill(Logging.class)) : this.$CAPACITY_USE$IO_SARL_CORE_LOGGING);
-    _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER.info("hear the simulstart alarm in the behavior");
+    _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER.info("Building is burnning!!");
     Move move = this.<Move>getSkill(Move.class);
     move.Run();
-  }
-  
-  @SyntheticMember
-  @Pure
-  private boolean $behaviorUnitGuard$SimulStart$0(final SimulStart it, final SimulStart occurrence) {
-    return (occurrence.mode == 1);
   }
   
   @SyntheticMember
@@ -131,16 +125,6 @@ public class YMBehavior extends Behavior {
   
   @SyntheticMember
   @PerceptGuardEvaluator
-  private void $guardEvaluator$SimulStart(final SimulStart occurrence, final Collection<Runnable> ___SARLlocal_runnableCollection) {
-    assert occurrence != null;
-    assert ___SARLlocal_runnableCollection != null;
-    if ($behaviorUnitGuard$SimulStart$0(occurrence, occurrence)) {
-      ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$SimulStart$0(occurrence));
-    }
-  }
-  
-  @SyntheticMember
-  @PerceptGuardEvaluator
   private void $guardEvaluator$AgentSpawned(final AgentSpawned occurrence, final Collection<Runnable> ___SARLlocal_runnableCollection) {
     assert occurrence != null;
     assert ___SARLlocal_runnableCollection != null;
@@ -153,6 +137,14 @@ public class YMBehavior extends Behavior {
     assert occurrence != null;
     assert ___SARLlocal_runnableCollection != null;
     ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$Destroy$2(occurrence));
+  }
+  
+  @SyntheticMember
+  @PerceptGuardEvaluator
+  private void $guardEvaluator$Fire(final Fire occurrence, final Collection<Runnable> ___SARLlocal_runnableCollection) {
+    assert occurrence != null;
+    assert ___SARLlocal_runnableCollection != null;
+    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$Fire$0(occurrence));
   }
   
   @SyntheticMember
