@@ -1,4 +1,4 @@
-package EvacGUI.Agent;
+package EvacGUI;
 
 import EvacGUI.Behaviors.SimulStart;
 import io.sarl.core.DefaultContextInteractions;

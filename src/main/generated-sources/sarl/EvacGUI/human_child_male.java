@@ -1,4 +1,4 @@
-package EvacGUI.Agent;
+package EvacGUI;
 
 import EvacGUI.Behaviors.Escape;
 import EvacGUI.Behaviors.EscapeSkills;

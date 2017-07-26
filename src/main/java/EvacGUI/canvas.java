@@ -13,7 +13,7 @@ public class canvas extends JComponent implements KeyListener,MouseMotionListene
     boolean bg_change=false;
     int color=254,incr=1;
     //a   array
-    static ArrayList<ball> ballarray;
+    public static ArrayList<ball> ballarray;
     static ArrayList<My_box> wallarray;
     ArrayList<ball> tempballarray;
     ball temp_ball = new ball(20);
@@ -231,13 +231,13 @@ public class canvas extends JComponent implements KeyListener,MouseMotionListene
     }
  
     //Ball inner-class
-    class ball
+    public class ball
     {
-        private int x_pos=0;
-        private int y_pos=0;
-        private int dir_x=1;
-        private int dir_y=1;
-        private int size=0;
+        public int x_pos=0;
+        public int y_pos=0;
+        public int dir_x=1;
+        public int dir_y=1;
+        public int size=0;
  
         ball(int size)
         {

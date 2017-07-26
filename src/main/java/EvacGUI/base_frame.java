@@ -32,6 +32,9 @@ public class base_frame extends JFrame implements ActionListener, ChangeListener
     JTextField agent_total_num = new JTextField(5);
     JTextField door_total_num = new JTextField(5);
     
+    static boolean isSpawnAgent = false;
+    static boolean isButtonClicked = false;
+    
     public static int timepassed=0;
     static int startflag=0;
     
@@ -59,7 +62,6 @@ public class base_frame extends JFrame implements ActionListener, ChangeListener
     JSlider slider = new JSlider(JSlider.HORIZONTAL,0,100,0); // 0~50까지 초기값 10
     
     // ********************************************************************
-    // define
     base_frame() {
         super("Evacuation Simulation Based on Agent System");
         //set slider additional setting
@@ -201,9 +203,15 @@ public class base_frame extends JFrame implements ActionListener, ChangeListener
         }else if(e.getSource()==b_start){
             draw_panel.removeAll();
             for(int i=0;i<Integer.parseInt(agent_total_num.getText());i++){
-                    draw_panel.addBall();
-                    startflag=1;
+            	//jihun will add..
+            	
+                draw_panel.addBall();
+                startflag=1;
             }
+            
+            //call def to make event in sarl about the spawning agents!
+            isSpawnAgent = true;
+            isButtonClicked = true;
         }
         if(e.getSource() == b_doorBig){
         	door_size = 50;
