@@ -47,11 +47,6 @@ agent Manager {
 		
 		var start = new base_frame()
 		
-		
-		
-		
-
-		
 		val waitTask = task("wait-task")
 		waitTask.every(1000) [
 			synchronized (this) {

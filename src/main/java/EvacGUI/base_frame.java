@@ -3,6 +3,8 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 //******************************************************************** import part
 import javax.swing.ButtonGroup;
@@ -45,6 +47,8 @@ public class base_frame extends JFrame implements ActionListener, ChangeListener
     private int door_size = 0;
     private int door_width = 0;
     private int door_height = 0;
+    
+    List<EscapeDoor> listDoor = new ArrayList<EscapeDoor>();
     
     static JLabel timerLabel = new JLabel("timer :");
     static JLabel timerLabel2 = new JLabel("0");
