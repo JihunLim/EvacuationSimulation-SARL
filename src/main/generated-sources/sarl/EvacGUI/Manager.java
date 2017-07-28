@@ -7,9 +7,12 @@ import EvacGUI.Behaviors.SimulStart;
 import EvacGUI.Behaviors.StopSimul;
 import EvacGUI.base_frame;
 import EvacGUI.human_child_male;
+import io.sarl.core.AgentKilled;
+import io.sarl.core.AgentSpawned;
 import io.sarl.core.AgentTask;
 import io.sarl.core.Behaviors;
 import io.sarl.core.DefaultContextInteractions;
+import io.sarl.core.Destroy;
 import io.sarl.core.Initialize;
 import io.sarl.core.InnerContextAccess;
 import io.sarl.core.Lifecycle;
@@ -34,6 +37,9 @@ import org.eclipse.xtext.xbase.lib.IntegerRange;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.eclipse.xtext.xbase.lib.Pure;
 
+/**
+ * @author User
+ */
 @SarlSpecification("0.5")
 @SarlElementType(16)
 @SuppressWarnings("all")
@@ -147,6 +153,20 @@ public class Manager extends Agent {
     return this.isSimulOpened;
   }
   
+  @SyntheticMember
+  private void $behaviorUnit$Destroy$4(final Destroy occurrence) {
+    Logging _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER = this.$castSkill(Logging.class, (this.$CAPACITY_USE$IO_SARL_CORE_LOGGING == null || this.$CAPACITY_USE$IO_SARL_CORE_LOGGING.get() == null) ? (this.$CAPACITY_USE$IO_SARL_CORE_LOGGING = this.$getSkill(Logging.class)) : this.$CAPACITY_USE$IO_SARL_CORE_LOGGING);
+    _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER.info("The agent was stopped.");
+  }
+  
+  @SyntheticMember
+  private void $behaviorUnit$AgentSpawned$5(final AgentSpawned occurrence) {
+  }
+  
+  @SyntheticMember
+  private void $behaviorUnit$AgentKilled$6(final AgentKilled occurrence) {
+  }
+  
   @Extension
   @ImportedCapacityFeature(Logging.class)
   @SyntheticMember
@@ -247,16 +267,6 @@ public class Manager extends Agent {
   
   @SyntheticMember
   @PerceptGuardEvaluator
-  private void $guardEvaluator$A_Here(final A_Here occurrence, final Collection<Runnable> ___SARLlocal_runnableCollection) {
-    assert occurrence != null;
-    assert ___SARLlocal_runnableCollection != null;
-    if ($behaviorUnitGuard$A_Here$1(occurrence, occurrence)) {
-      ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$A_Here$1(occurrence));
-    }
-  }
-  
-  @SyntheticMember
-  @PerceptGuardEvaluator
   private void $guardEvaluator$A_Dead(final A_Dead occurrence, final Collection<Runnable> ___SARLlocal_runnableCollection) {
     assert occurrence != null;
     assert ___SARLlocal_runnableCollection != null;
@@ -267,12 +277,46 @@ public class Manager extends Agent {
   
   @SyntheticMember
   @PerceptGuardEvaluator
+  private void $guardEvaluator$AgentSpawned(final AgentSpawned occurrence, final Collection<Runnable> ___SARLlocal_runnableCollection) {
+    assert occurrence != null;
+    assert ___SARLlocal_runnableCollection != null;
+    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$AgentSpawned$5(occurrence));
+  }
+  
+  @SyntheticMember
+  @PerceptGuardEvaluator
   private void $guardEvaluator$A_Escape(final A_Escape occurrence, final Collection<Runnable> ___SARLlocal_runnableCollection) {
     assert occurrence != null;
     assert ___SARLlocal_runnableCollection != null;
     if ($behaviorUnitGuard$A_Escape$3(occurrence, occurrence)) {
       ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$A_Escape$3(occurrence));
     }
+  }
+  
+  @SyntheticMember
+  @PerceptGuardEvaluator
+  private void $guardEvaluator$A_Here(final A_Here occurrence, final Collection<Runnable> ___SARLlocal_runnableCollection) {
+    assert occurrence != null;
+    assert ___SARLlocal_runnableCollection != null;
+    if ($behaviorUnitGuard$A_Here$1(occurrence, occurrence)) {
+      ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$A_Here$1(occurrence));
+    }
+  }
+  
+  @SyntheticMember
+  @PerceptGuardEvaluator
+  private void $guardEvaluator$Destroy(final Destroy occurrence, final Collection<Runnable> ___SARLlocal_runnableCollection) {
+    assert occurrence != null;
+    assert ___SARLlocal_runnableCollection != null;
+    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$Destroy$4(occurrence));
+  }
+  
+  @SyntheticMember
+  @PerceptGuardEvaluator
+  private void $guardEvaluator$AgentKilled(final AgentKilled occurrence, final Collection<Runnable> ___SARLlocal_runnableCollection) {
+    assert occurrence != null;
+    assert ___SARLlocal_runnableCollection != null;
+    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$AgentKilled$6(occurrence));
   }
   
   @Override
