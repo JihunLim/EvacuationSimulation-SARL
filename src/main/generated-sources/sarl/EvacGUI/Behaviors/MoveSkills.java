@@ -13,9 +13,6 @@ import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Inline;
 import org.eclipse.xtext.xbase.lib.Pure;
 
-/**
- * @author User
- */
 @SarlSpecification("0.5")
 @SarlElementType(19)
 @SuppressWarnings("all")
@@ -26,12 +23,6 @@ public class MoveSkills extends Skill implements Move {
   public void Run() {
     Logging _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER = this.$castSkill(Logging.class, (this.$CAPACITY_USE$IO_SARL_CORE_LOGGING == null || this.$CAPACITY_USE$IO_SARL_CORE_LOGGING.get() == null) ? (this.$CAPACITY_USE$IO_SARL_CORE_LOGGING = this.$getSkill(Logging.class)) : this.$CAPACITY_USE$IO_SARL_CORE_LOGGING);
     _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER.info("Running!");
-  }
-  
-  public void install() {
-  }
-  
-  public void uninstall() {
   }
   
   @Extension
