@@ -48,7 +48,7 @@ public class base_frame extends JFrame implements ActionListener, ChangeListener
     private int door_width = 0;
     private int door_height = 0;
     
-    List<EscapeDoor> listDoor = new ArrayList<EscapeDoor>();
+    static List<EscapeDoor> listDoor = new ArrayList<EscapeDoor>();
     
     static JLabel timerLabel = new JLabel("timer :");
     static JLabel timerLabel2 = new JLabel("0");
