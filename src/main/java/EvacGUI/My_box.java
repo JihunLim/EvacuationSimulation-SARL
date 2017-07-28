@@ -2,8 +2,6 @@ package EvacGUI;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
-
-import EvacGUI.Agent.human_child_male;
 class My_box extends Rectangle
 {
 	

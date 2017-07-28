@@ -1,14 +1,8 @@
-/** 
- * 
- */
+
 package EvacGUI.Behaviors
 
 import io.sarl.core.Logging
 
-/** 
- * @author User
- */
- 
 skill MoveSkills implements Move {
 	uses Logging
 
@@ -19,23 +13,10 @@ skill MoveSkills implements Move {
 	def Run {
 		info("Running!")
 	}
-
-	def install {
-		// Function invoked when the skill is installed in the owner.
-		// You should put all the initialization statements in this block of code.
-		//info("Installing the skill")
-	}
-
-	def uninstall {
-		// Function invoked when the skill is uninstalled from the owner.
-		// You should put all the resource release statements in this block of code.
-		//info("Uninstalling the skill")
-	}
 }
 
 skill EscapeSkills implements Escape {
 	uses Logging
-	
 	def Escape {
 		info("Escaping!")
 	}

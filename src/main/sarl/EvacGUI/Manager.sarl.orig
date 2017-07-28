@@ -36,6 +36,10 @@ agent Manager {
 	on Initialize {
 		info("The Manager agent of Evacuation Simulation is initialize!")
 		var start = new base_frame()
+<<<<<<< HEAD
+		
+=======
+>>>>>>> 77c1d965c5fe481d027f5996883bf0b4d36b0e42
 		val waitTask = task("wait-task")
 		waitTask.every(1000) [
 			synchronized (this) {
