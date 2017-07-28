@@ -246,7 +246,10 @@ public class base_frame extends JFrame implements ActionListener, ChangeListener
     		
     	}
         if(e.getSource() == b_doorAdd){
+        	//make door
         	canvas.addDoor(door_x, door_y, door_width, door_height);
+        	//create the 'EscapeDoor' class with the x,y information and make the ArrayList as listDoor
+        	listDoor.add(new EscapeDoor(door_x, door_y, door_width, door_height));
         	group.clearSelection();
         }
     }
