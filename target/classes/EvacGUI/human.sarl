@@ -10,27 +10,87 @@ import EvacGUI.Behaviors.Move
 import EvacGUI.Behaviors.MoveSkills
 import EvacGUI.Behaviors.SimulStart
 import EvacGUI.Behaviors.YMBehavior
+import io.sarl.core.AgentKilled
+import io.sarl.core.AgentSpawned
 import io.sarl.core.Behaviors
 import io.sarl.core.DefaultContextInteractions
+import io.sarl.core.Destroy
+import io.sarl.core.Initialize
 import io.sarl.core.Logging
 
+//import EvacGUI.Agent.test
+
+/** 
+ * @author User
+ * 
+ */
+ 
 agent human_child_male {
 	uses Logging, DefaultContextInteractions, Behaviors
 	
 	var life : int = 100
 	var strength : int = 30
 	var age : int
-	var sex : String 
+	var sex : String // male or female
 	var emotion : int
+	//var test1 = new test()
+	
+	static def c8c8() {
+		
+	}
+	
+	def c8c8c8(){
+		
+	}
 	
 	on SimulStart [occurrence.mode == 1] {
+		// start when mode is 1
+		//println("mode is " + occurrence.mode)
 		println("agent which is " + this.ID + " is spawned!")
+		//set initialize the variables
 		life = 100
+		
+		// implements the skills & capacity!
 		setSkill(new MoveSkills, Move)
 		setSkill(new EscapeSkills, Escape)
+		//setSkill(new Watch, See)
+		
+		// set the behavior
 		var beh = new YMBehavior(this)
 		registerBehavior(beh)
+		
+		// start the fire 
 		emit(new Fire, null)
+		
+	}
+	
+	
+
+	on Initialize {
+		// Event trigger before the agent begin to live or to be used.
+		// You should put all the initialization statements in this block of code.
+		//info("The agent was started.")
+//		life = test::testint
+//		var aa = new test
+//		life = aa.aaaaa
+//	    aa.test11
+//		aa.abc8
+		
+		
+	}
+
+	on Destroy {
+		// Event trigger when the agent is destroyed from the system.
+		// You should put all the resource releasing statements in this block of code.
+		info("The agent was stopped.")
+	}
+
+	on AgentSpawned {
+		// A new agent has been spawned in our context.
+	}
+
+	on AgentKilled {
+		// A new agent has been killed in our context.
 	}
 }
 
@@ -40,11 +100,13 @@ agent human_child_female {
 	var life : int = 80
 	var strength : int = 15
 	var age : int
-	var sex : String 
+	var sex : String // male or female
 	var emotion : int
 
 	on SimulStart [occurrence.mode == 1] {
+		// start when mode is 1
 		println("mode is " + occurrence.mode)
 		println("agent which is " + this.ID + " is spawned!")
+		// initialize agent
 	}
 }

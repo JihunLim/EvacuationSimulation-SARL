@@ -1,12 +1,19 @@
-
+/** 
+ * 
+ */
 package EvacGUI.Behaviors
 
 import io.sarl.core.Destroy
 import io.sarl.core.Initialize
 import io.sarl.core.Logging
+
+/** 
+ * @author User
+ **/
  
 behavior YMBehavior {
 	uses Logging
+	
 	on Fire {
 		info("Building is burnning!!")
 		var move = getSkill(Move)
@@ -14,5 +21,17 @@ behavior YMBehavior {
 		escape.Escape
 		move.Run
 
+	}
+
+	on Initialize {
+		// Event trigger before the behavior begin to live or to be used.
+		// You should put all the initialization statements in this block of code.
+		info("The behavior was started.")
+	}
+
+	on Destroy {
+		// Event trigger when the behavior is destroyed from the system.
+		// You should put all the resource releasing statements in this block of code.
+		info("The behavior was stopped.")
 	}
 }

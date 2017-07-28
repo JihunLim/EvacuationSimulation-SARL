@@ -21,21 +21,32 @@ import io.sarl.core.Schedules
 
 import static EvacGUI.base_frame.*
 
+/** 
+ * @author User
+ * 
+ */
+ 
 agent Manager {
-	uses Logging, InnerContextAccess, Behaviors, Lifecycle, Schedules, Behaviors, DefaultContextInteractions
+	uses Logging, InnerContextAccess, Behaviors, Lifecycle, Schedules, Behaviors, DefaultContextInteractions 
 
+	
+	//static var isSpawnAgent = false
 	var isSimulOpened = true
 	var hasHuman = false
 	var livedManCount : int
 	var deadHuman : int = 0
 	var escapeHuman : int = 0
-
-	static def SpawnAgent : void {
-	}
-
+	
+    static def SpawnAgent : void {
+		//isSpawnAgent = true
+    }
 	on Initialize {
+		// Event trigger before the agent begin to live or to be used.
+		// You should put all the initialization statements in this block of code.
 		info("The Manager agent of Evacuation Simulation is initialize!")
+		
 		var start = new base_frame()
+		
 		val waitTask = task("wait-task")
 		waitTask.every(1000) [
 			synchronized (this) {
@@ -45,21 +56,21 @@ agent Manager {
 						killMe
 					}
 				} else {
-					if (base_frame.isSpawnAgent) {
+					if (base_frame.isSpawnAgent){
 						// Spawn Agent
 						// emit(new SpawnAgentEvent, null)
 						// set the proportion
 						info("agent num is -> " + base_frame.agent_num)
 						if (base_frame.agent_num > 0) {
 							for (i : 1 .. base_frame.agent_num) { // 1 to 5
-								info("aaa")
+							    info("aaa")
 								spawnInContext(typeof(human_child_male), getInnerContext)
+								}
 							}
-						}
 						wake(new SimulStart(1)) // start the evacuation simulation with the mode 1
 						base_frame.isSpawnAgent = false
 					}
-
+					
 					if (!hasHuman && isButtonClicked) { // there are no people in the building except the dead
 						isSimulOpened = false
 						// print the information who escaped people or dead people etc.
@@ -72,8 +83,12 @@ agent Manager {
 				}
 			}
 		]
-
+		
+		
 	}
+	
+	
+	
 	on A_Here [isSimulOpened] {
 		synchronized (this) {
 			hasHuman = true
@@ -91,5 +106,20 @@ agent Manager {
 		synchronized (this) {
 			escapeHuman += 1
 		}
+	}
+
+	on Destroy {
+		// Event trigger when the agent is destroyed from the system.
+		// You should put all the resource releasing statements in this block of code.
+		info("The agent was stopped.")
+	}
+
+	on AgentSpawned {
+		// A new agent has been spawned in our context.
+		//println("Manager agent is spawned!")
+	}
+
+	on AgentKilled {
+		// A new agent has been killed in our context.
 	}
 }

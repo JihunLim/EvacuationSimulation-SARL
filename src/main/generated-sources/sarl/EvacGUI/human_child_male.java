@@ -7,8 +7,12 @@ import EvacGUI.Behaviors.Move;
 import EvacGUI.Behaviors.MoveSkills;
 import EvacGUI.Behaviors.SimulStart;
 import EvacGUI.Behaviors.YMBehavior;
+import io.sarl.core.AgentKilled;
+import io.sarl.core.AgentSpawned;
 import io.sarl.core.Behaviors;
 import io.sarl.core.DefaultContextInteractions;
+import io.sarl.core.Destroy;
+import io.sarl.core.Initialize;
 import io.sarl.core.Logging;
 import io.sarl.lang.annotation.ImportedCapacityFeature;
 import io.sarl.lang.annotation.PerceptGuardEvaluator;
@@ -28,6 +32,9 @@ import org.eclipse.xtext.xbase.lib.Inline;
 import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.Pure;
 
+/**
+ * @author User
+ */
 @SarlSpecification("0.5")
 @SarlElementType(16)
 @SuppressWarnings("all")
@@ -41,6 +48,12 @@ public class human_child_male extends Agent {
   private String sex;
   
   private int emotion;
+  
+  protected static void c8c8() {
+  }
+  
+  protected void c8c8c8() {
+  }
   
   @SyntheticMember
   private void $behaviorUnit$SimulStart$0(final SimulStart occurrence) {
@@ -65,6 +78,24 @@ public class human_child_male extends Agent {
   @Pure
   private boolean $behaviorUnitGuard$SimulStart$0(final SimulStart it, final SimulStart occurrence) {
     return (occurrence.mode == 1);
+  }
+  
+  @SyntheticMember
+  private void $behaviorUnit$Initialize$1(final Initialize occurrence) {
+  }
+  
+  @SyntheticMember
+  private void $behaviorUnit$Destroy$2(final Destroy occurrence) {
+    Logging _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER = this.$castSkill(Logging.class, (this.$CAPACITY_USE$IO_SARL_CORE_LOGGING == null || this.$CAPACITY_USE$IO_SARL_CORE_LOGGING.get() == null) ? (this.$CAPACITY_USE$IO_SARL_CORE_LOGGING = this.$getSkill(Logging.class)) : this.$CAPACITY_USE$IO_SARL_CORE_LOGGING);
+    _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER.info("The agent was stopped.");
+  }
+  
+  @SyntheticMember
+  private void $behaviorUnit$AgentSpawned$3(final AgentSpawned occurrence) {
+  }
+  
+  @SyntheticMember
+  private void $behaviorUnit$AgentKilled$4(final AgentKilled occurrence) {
   }
   
   @Extension
@@ -114,12 +145,44 @@ public class human_child_male extends Agent {
   
   @SyntheticMember
   @PerceptGuardEvaluator
+  private void $guardEvaluator$Initialize(final Initialize occurrence, final Collection<Runnable> ___SARLlocal_runnableCollection) {
+    assert occurrence != null;
+    assert ___SARLlocal_runnableCollection != null;
+    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$Initialize$1(occurrence));
+  }
+  
+  @SyntheticMember
+  @PerceptGuardEvaluator
+  private void $guardEvaluator$Destroy(final Destroy occurrence, final Collection<Runnable> ___SARLlocal_runnableCollection) {
+    assert occurrence != null;
+    assert ___SARLlocal_runnableCollection != null;
+    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$Destroy$2(occurrence));
+  }
+  
+  @SyntheticMember
+  @PerceptGuardEvaluator
+  private void $guardEvaluator$AgentKilled(final AgentKilled occurrence, final Collection<Runnable> ___SARLlocal_runnableCollection) {
+    assert occurrence != null;
+    assert ___SARLlocal_runnableCollection != null;
+    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$AgentKilled$4(occurrence));
+  }
+  
+  @SyntheticMember
+  @PerceptGuardEvaluator
   private void $guardEvaluator$SimulStart(final SimulStart occurrence, final Collection<Runnable> ___SARLlocal_runnableCollection) {
     assert occurrence != null;
     assert ___SARLlocal_runnableCollection != null;
     if ($behaviorUnitGuard$SimulStart$0(occurrence, occurrence)) {
       ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$SimulStart$0(occurrence));
     }
+  }
+  
+  @SyntheticMember
+  @PerceptGuardEvaluator
+  private void $guardEvaluator$AgentSpawned(final AgentSpawned occurrence, final Collection<Runnable> ___SARLlocal_runnableCollection) {
+    assert occurrence != null;
+    assert ___SARLlocal_runnableCollection != null;
+    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$AgentSpawned$3(occurrence));
   }
   
   @Override
