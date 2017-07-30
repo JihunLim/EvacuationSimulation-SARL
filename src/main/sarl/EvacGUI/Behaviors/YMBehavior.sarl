@@ -17,9 +17,9 @@ behavior YMBehavior {
 	on Fire {
 		info("Building is burnning!!")
 		var move = getSkill(Move)
-		var escape = getSkill(Escape)
-		escape.Escape
-		move.Run
+		//var escape = getSkill(Escape)
+		move.Escape
+		move.speed
 
 	}
 

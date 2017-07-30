@@ -5,20 +5,17 @@ import io.sarl.core.Logging
 
 skill MoveSkills implements Move {
 	uses Logging
+	var speed : float
 
-	def Walk {
-		
+	def Escape {
+		info("Escaping!")
 	}
-
-	def Run {
-		info("Running!")
-	}
+	
+	
 }
 
 skill EscapeSkills implements Escape {
 	uses Logging
-	def Escape {
-		info("Escaping!")
-	}
+	
 	
 }

@@ -2,11 +2,11 @@
 package EvacGUI.Behaviors
 
 capacity Move {
-	def Walk
-	def Run
+	def Escape
+	def Speed
 }
 
 capacity Escape {
-	def Escape
+	//def Escape
 }
 

@@ -9,28 +9,28 @@ import io.sarl.lang.core.Capacity;
 @SarlElementType(17)
 @SuppressWarnings("all")
 public interface Move extends Capacity {
-  public abstract void Walk();
+  public abstract void Escape();
   
-  public abstract void Run();
+  public abstract void Speed();
   
   public static class ContextAwareCapacityWrapper<C extends Move> extends Capacity.ContextAwareCapacityWrapper<C> implements Move {
     public ContextAwareCapacityWrapper(final C capacity, final AgentTrait caller) {
       super(capacity, caller);
     }
     
-    public void Walk() {
+    public void Escape() {
       try {
         ensureCallerInLocalThread();
-        this.capacity.Walk();
+        this.capacity.Escape();
       } finally {
         resetCallerInLocalThread();
       }
     }
     
-    public void Run() {
+    public void Speed() {
       try {
         ensureCallerInLocalThread();
-        this.capacity.Run();
+        this.capacity.Speed();
       } finally {
         resetCallerInLocalThread();
       }
