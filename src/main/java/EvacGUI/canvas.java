@@ -168,7 +168,7 @@ public class canvas extends JComponent implements KeyListener,MouseMotionListene
                 temp_ball.collision(b5);
                 //temp_ball.collisionExit(wall1);
                 
-                //벽 추가 버튼을 누르면 리스트에 둬서 리스트를 차례로 번갈아가면서 확인하는 것으로 바꾸면 됨
+            
                 
                 //checking for exit wall collision with our movable
                 for(My_box temp_box: wallarray){

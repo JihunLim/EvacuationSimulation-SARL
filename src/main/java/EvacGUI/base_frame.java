@@ -53,7 +53,7 @@ public class base_frame extends JFrame implements ActionListener, ChangeListener
     static JLabel timerLabel = new JLabel("timer :");
     static JLabel timerLabel2 = new JLabel("0");
     
-    //static int SDOOR_MAX = 1200; //슬라이더의 최대값 (아래 포지션에 따라 최대값은 달라짐)
+    //static int SDOOR_MAX = 1200; 
     
     JRadioButton b_top = new JRadioButton("TOP");
     JRadioButton b_right = new JRadioButton("RIGHT");
@@ -63,18 +63,18 @@ public class base_frame extends JFrame implements ActionListener, ChangeListener
     JRadioButton b_doorSmall = new JRadioButton("Small door");
     ButtonGroup group = new ButtonGroup();
     ButtonGroup group1 = new ButtonGroup();
-    JSlider slider = new JSlider(JSlider.HORIZONTAL,0,100,0); // 0~50까지 초기값 10
+    JSlider slider = new JSlider(JSlider.HORIZONTAL,0,100,0); 
     
     // ********************************************************************
     base_frame() {
         super("Evacuation Simulation Based on Agent System");
         //set slider additional setting
-        slider.setPaintLabels(true); // slider에 글자 표시
-    	slider.setPaintTicks(true); // 눈금표시
-    	slider.setPaintTrack(true); // slider box 표시
+        slider.setPaintLabels(true); // 
+    	slider.setPaintTicks(true); //
+    	slider.setPaintTrack(true); // slider box
     	
-    	slider.setMajorTickSpacing(10); // 큰 눈금 단위
-    	slider.setMajorTickSpacing(5); // 작은 눈금 단위
+    	slider.setMajorTickSpacing(10); // 
+    	slider.setMajorTickSpacing(5); //
     	
         // our UI panel which contains gui comps
         ui_panel = new JPanel();
