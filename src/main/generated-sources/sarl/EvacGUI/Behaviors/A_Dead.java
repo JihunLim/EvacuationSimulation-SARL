@@ -19,4 +19,7 @@ public class A_Dead extends Event {
   public A_Dead(final Address source) {
     super(source);
   }
+  
+  @SyntheticMember
+  private final static long serialVersionUID = 588368462L;
 }

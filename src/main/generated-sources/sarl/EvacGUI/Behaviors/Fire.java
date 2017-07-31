@@ -19,4 +19,7 @@ public class Fire extends Event {
   public Fire(final Address source) {
     super(source);
   }
+  
+  @SyntheticMember
+  private final static long serialVersionUID = 588368462L;
 }
