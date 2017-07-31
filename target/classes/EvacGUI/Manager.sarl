@@ -6,6 +6,7 @@ package EvacGUI
 import EvacGUI.Behaviors.A_Dead
 import EvacGUI.Behaviors.A_Escape
 import EvacGUI.Behaviors.A_Here
+import EvacGUI.Behaviors.Fire
 import EvacGUI.Behaviors.SimulStart
 import EvacGUI.Behaviors.StopSimul
 import io.sarl.core.AgentKilled
@@ -18,6 +19,7 @@ import io.sarl.core.InnerContextAccess
 import io.sarl.core.Lifecycle
 import io.sarl.core.Logging
 import io.sarl.core.Schedules
+import io.sarl.util.Scopes
 
 import static EvacGUI.base_frame.*
 
@@ -68,6 +70,9 @@ agent Manager {
 								}
 							}
 						wake(new SimulStart(1)) // start the evacuation simulation with the mode 1
+						var superScope = Scopes.addresses(defaultSpace.getAddress(innerContext.ID))
+					
+						emit(new Fire, superScope)
 						base_frame.isSpawnAgent = false
 					}
 					

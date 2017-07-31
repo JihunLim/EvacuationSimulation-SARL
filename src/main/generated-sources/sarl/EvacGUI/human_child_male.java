@@ -2,7 +2,6 @@ package EvacGUI;
 
 import EvacGUI.Behaviors.Escape;
 import EvacGUI.Behaviors.EscapeSkills;
-import EvacGUI.Behaviors.Fire;
 import EvacGUI.Behaviors.Move;
 import EvacGUI.Behaviors.MoveSkills;
 import EvacGUI.Behaviors.SimulStart;
@@ -49,19 +48,12 @@ public class human_child_male extends Agent {
   
   private int emotion;
   
-  protected static void c8c8() {
-  }
-  
-  protected void c8c8c8() {
-  }
-  
   @SyntheticMember
   private void $behaviorUnit$SimulStart$0(final SimulStart occurrence) {
     UUID _iD = this.getID();
     String _plus = ("agent which is " + _iD);
     String _plus_1 = (_plus + " is spawned!");
     InputOutput.<String>println(_plus_1);
-    this.life = 100;
     MoveSkills _moveSkills = new MoveSkills();
     this.<MoveSkills>setSkill(_moveSkills, Move.class);
     EscapeSkills _escapeSkills = new EscapeSkills();
@@ -69,9 +61,6 @@ public class human_child_male extends Agent {
     YMBehavior beh = new YMBehavior(this);
     Behaviors _$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS$CALLER = this.$castSkill(Behaviors.class, (this.$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS == null || this.$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS.get() == null) ? (this.$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS = this.$getSkill(Behaviors.class)) : this.$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS);
     _$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS$CALLER.registerBehavior(beh);
-    DefaultContextInteractions _$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER = this.$castSkill(DefaultContextInteractions.class, (this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS == null || this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS.get() == null) ? (this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS = this.$getSkill(DefaultContextInteractions.class)) : this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS);
-    Fire _fire = new Fire();
-    _$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER.emit(_fire, null);
   }
   
   @SyntheticMember
@@ -82,6 +71,7 @@ public class human_child_male extends Agent {
   
   @SyntheticMember
   private void $behaviorUnit$Initialize$1(final Initialize occurrence) {
+    this.life = 100;
   }
   
   @SyntheticMember

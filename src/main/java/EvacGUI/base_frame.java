@@ -185,7 +185,6 @@ public class base_frame extends JFrame implements ActionListener, ChangeListener
 	public void stateChanged(ChangeEvent e) {
 		if(e.getSource()==slider){
 			door_slideValue = slider.getValue();
-			System.out.println("slider의 값 : " + door_slideValue);
 		}
 		
 	}
@@ -199,7 +198,6 @@ public class base_frame extends JFrame implements ActionListener, ChangeListener
         {
             //adds a ball of size 20;
             draw_panel.addBall();
-            System.out.println("Added a ball");
         }else if(e.getSource()==b_remove)
         {
                 draw_panel.removeBall();
@@ -207,8 +205,7 @@ public class base_frame extends JFrame implements ActionListener, ChangeListener
         }else if(e.getSource()==b_start){
             draw_panel.removeAll();
             for(int i=0;i<Integer.parseInt(agent_total_num.getText());i++){
-            	//jihun will add..
-            	
+
                 draw_panel.addBall();
                 startflag=1;
             }
@@ -227,8 +224,6 @@ public class base_frame extends JFrame implements ActionListener, ChangeListener
         	door_y = -5; 
         	door_x = (((float)canvas.wall_width-door_size)/100)*door_slideValue;
         	door_width = door_size; door_height = 20;
-        	
-        	//System.out.printf("%f, %f, %d, %d", door_x, door_y, door_width, door_height);
     	}else if(e.getSource() == b_right){
     		door_x = canvas.wall_width-5;
     		door_y = (((float)canvas.wall_height-door_size)/100)*door_slideValue;
