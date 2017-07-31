@@ -41,7 +41,7 @@ agent human_child_male {
 		// set initialize the variables
 		agent_id = state.agent_number
 		state.agent_number++
-		var state = new state()
+		//var state = new state()
 		state.change_direction(agent_id, 800, 500)
 		println(agent_id)
 
@@ -81,7 +81,7 @@ agent human_child_male {
 		// A new agent has been killed in our context.
 	}
 }
-
+/* 
 agent human_child_female {
 	uses Logging, DefaultContextInteractions
 
@@ -98,3 +98,5 @@ agent human_child_female {
 		// initialize agent
 	}
 }
+* /
+*/
