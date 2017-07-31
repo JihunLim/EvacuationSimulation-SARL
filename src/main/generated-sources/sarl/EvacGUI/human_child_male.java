@@ -2,10 +2,12 @@ package EvacGUI;
 
 import EvacGUI.Behaviors.Escape;
 import EvacGUI.Behaviors.EscapeSkills;
+import EvacGUI.Behaviors.Fire;
 import EvacGUI.Behaviors.Move;
 import EvacGUI.Behaviors.MoveSkills;
 import EvacGUI.Behaviors.SimulStart;
 import EvacGUI.Behaviors.YMBehavior;
+import EvacGUI.state;
 import io.sarl.core.AgentKilled;
 import io.sarl.core.AgentSpawned;
 import io.sarl.core.Behaviors;
@@ -48,12 +50,17 @@ public class human_child_male extends Agent {
   
   private int emotion;
   
+  private int agent_id;
+  
   @SyntheticMember
   private void $behaviorUnit$SimulStart$0(final SimulStart occurrence) {
     UUID _iD = this.getID();
     String _plus = ("agent which is " + _iD);
     String _plus_1 = (_plus + " is spawned!");
     InputOutput.<String>println(_plus_1);
+    this.agent_id = state.agent_number;
+    state.agent_number++;
+    InputOutput.<Integer>println(Integer.valueOf(this.agent_id));
     MoveSkills _moveSkills = new MoveSkills();
     this.<MoveSkills>setSkill(_moveSkills, Move.class);
     EscapeSkills _escapeSkills = new EscapeSkills();
@@ -61,6 +68,11 @@ public class human_child_male extends Agent {
     YMBehavior beh = new YMBehavior(this);
     Behaviors _$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS$CALLER = this.$castSkill(Behaviors.class, (this.$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS == null || this.$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS.get() == null) ? (this.$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS = this.$getSkill(Behaviors.class)) : this.$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS);
     _$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS$CALLER.registerBehavior(beh);
+    if ((this.agent_id == 1)) {
+      DefaultContextInteractions _$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER = this.$castSkill(DefaultContextInteractions.class, (this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS == null || this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS.get() == null) ? (this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS = this.$getSkill(DefaultContextInteractions.class)) : this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS);
+      Fire _fire = new Fire();
+      _$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER.emit(_fire, null);
+    }
   }
   
   @SyntheticMember
@@ -197,6 +209,8 @@ public class human_child_male extends Agent {
     }
     if (other.emotion != this.emotion)
       return false;
+    if (other.agent_id != this.agent_id)
+      return false;
     return super.equals(obj);
   }
   
@@ -211,6 +225,7 @@ public class human_child_male extends Agent {
     result = prime * result + this.age;
     result = prime * result + Objects.hashCode(this.sex);
     result = prime * result + this.emotion;
+    result = prime * result + this.agent_id;
     return result;
   }
   

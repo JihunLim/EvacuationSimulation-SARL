@@ -13,7 +13,7 @@ public class canvas extends JComponent implements KeyListener,MouseMotionListene
     boolean bg_change=false;
     int color=254,incr=1;
     //a   array
-    public static ArrayList<ball> ballarray;
+    static ArrayList<ball> ballarray;
     static ArrayList<My_box> wallarray;
     ArrayList<ball> tempballarray;
     ball temp_ball = new ball(20);
@@ -47,8 +47,33 @@ public class canvas extends JComponent implements KeyListener,MouseMotionListene
         setFocusable(true);
     }
     
+
     
+    public void change_direction(int closestdoor_x, int closestdoor_y){
+    	float x=ballarray.get(0).x_pos;
+    	float y=ballarray.get(0).y_pos;
+    	float diff_x = closestdoor_x-x;
+    	float diff_y = closestdoor_y-y;
+    	float normalized_diff_y;
+    	if(diff_x<0){
+    		normalized_diff_y=diff_y/diff_x;
+    		diff_x=1;
+    		
+    	}
+    	else {
+    		normalized_diff_y=-diff_y/diff_x;
+    		diff_x=-1;
+    	}
+    	
+    	ballarray.get(0).dir_x=diff_x;
+    	ballarray.get(0).dir_y=normalized_diff_y;
+    	System.out.println(diff_x);
+    	System.out.println(normalized_diff_y);
+    	
+    }
  
+    
+    
     //change to background color dynamically(default:white)
     public void changeBGcolor()
     {
@@ -78,6 +103,7 @@ public class canvas extends JComponent implements KeyListener,MouseMotionListene
         temp_ball.y_pos= (int) (Math.random()*wall_height%(wall_height-10));
         ballarray.add(temp_ball);
         base_frame.balladded();
+        change_direction(800,500);
     }
  
     public void removeBall()
@@ -167,8 +193,7 @@ public class canvas extends JComponent implements KeyListener,MouseMotionListene
                 //temp_ball.collision(b4);
                 temp_ball.collision(b5);
                 //temp_ball.collisionExit(wall1);
-                
-            
+               
                 
                 //checking for exit wall collision with our movable
                 for(My_box temp_box: wallarray){
@@ -189,7 +214,6 @@ public class canvas extends JComponent implements KeyListener,MouseMotionListene
                 ballarray.remove(evac_ball);
             }
             repaint();//calls the paint method
- 
         }catch(Exception e)
         {
             System.out.println(e);
@@ -231,13 +255,13 @@ public class canvas extends JComponent implements KeyListener,MouseMotionListene
     }
  
     //Ball inner-class
-    public class ball
+    class ball
     {
-        public int x_pos=0;
-        public int y_pos=0;
-        public int dir_x=1;
-        public int dir_y=1;
-        public int size=0;
+         float x_pos=0;
+         float y_pos=0;
+         float dir_x=1;
+         float dir_y=1;
+         int size=0;
  
         ball(int size)
         {
@@ -287,43 +311,29 @@ public class canvas extends JComponent implements KeyListener,MouseMotionListene
  
         public void changeDirection_Y()
         {
-                    if(dir_y==-1)
-            {
-                dir_y=1;
-            }
-            else
-            {
-                dir_y=-1;
-            }
+        	dir_y=-dir_y;
         }
  
         public void changeDirection_X()
         {
-            if(dir_x==-1)
-            {
-                dir_x=1;
-            }
-            else
-            {
-                dir_x=-1;
-            }
+           dir_x=-dir_x;
         }
  
         public void drawBall(Graphics g, boolean bound)
         {
             calculate_direction();
             g.setColor(Color.BLUE);
-            g.fillOval(x_pos,y_pos,size,size);
+            g.fillOval((int)x_pos,(int)y_pos,size,size);
  
             if(bound)
             {
-                g.drawRect(x_pos,y_pos,size,size);
+                g.drawRect((int)x_pos,(int)y_pos,size,size);
             }
         }
  
         public Rectangle getRectBounds()
         {
-            return new Rectangle(x_pos,y_pos,size,size);
+            return new Rectangle((int)x_pos,(int)y_pos,size,size);
         }
                 //this method is called for all balls and checked whether it touches the rect.if so,the ball’s direction gets changed accordingly.
         public void collision(My_box rect)
