@@ -11,6 +11,9 @@ skill MoveSkills implements Move {
 		info("Escaping!")
 	}
 	
+	def Speed {
+		
+	}
 	
 }
 

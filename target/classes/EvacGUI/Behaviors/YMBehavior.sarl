@@ -19,7 +19,7 @@ behavior YMBehavior {
 		var move = getSkill(Move)
 		//var escape = getSkill(Escape)
 		move.Escape
-		move.speed
+		
 
 	}
 
