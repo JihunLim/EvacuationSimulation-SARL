@@ -6,7 +6,6 @@ package EvacGUI
 import EvacGUI.Behaviors.A_Dead
 import EvacGUI.Behaviors.A_Escape
 import EvacGUI.Behaviors.A_Here
-import EvacGUI.Behaviors.Fire
 import EvacGUI.Behaviors.SimulStart
 import EvacGUI.Behaviors.StopSimul
 import io.sarl.core.AgentKilled
@@ -48,6 +47,7 @@ agent Manager {
 		// You should put all the initialization statements in this block of code.
 		info("The Manager agent of Evacuation Simulation is initialize!")
 		var start = new base_frame()
+		var state = new state()
 		val waitTask = task("wait-task")
 		waitTask.every(1000) [
 			synchronized (this) {
@@ -72,7 +72,7 @@ agent Manager {
 						wake(new SimulStart(1)) // start the evacuation simulation with the mode 1
 						base_frame.isSpawnAgent = false
 						var superScope = Scopes.addresses(defaultSpace.getAddress(innerContext.ID))
-						emit(new Fire)
+						//emit(new Fire)
 					}
 					
 					if (!hasHuman && isButtonClicked) { // there are no people in the building except the dead

@@ -60,6 +60,8 @@ public class human_child_male extends Agent {
     InputOutput.<String>println(_plus_1);
     this.agent_id = state.agent_number;
     state.agent_number++;
+    state state = new EvacGUI.state();
+    state.change_direction(this.agent_id, 800, 500);
     InputOutput.<Integer>println(Integer.valueOf(this.agent_id));
     MoveSkills _moveSkills = new MoveSkills();
     this.<MoveSkills>setSkill(_moveSkills, Move.class);
@@ -68,7 +70,7 @@ public class human_child_male extends Agent {
     YMBehavior beh = new YMBehavior(this);
     Behaviors _$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS$CALLER = this.$castSkill(Behaviors.class, (this.$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS == null || this.$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS.get() == null) ? (this.$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS = this.$getSkill(Behaviors.class)) : this.$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS);
     _$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS$CALLER.registerBehavior(beh);
-    if ((this.agent_id == 1)) {
+    if ((this.agent_id == 0)) {
       DefaultContextInteractions _$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER = this.$castSkill(DefaultContextInteractions.class, (this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS == null || this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS.get() == null) ? (this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS = this.$getSkill(DefaultContextInteractions.class)) : this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS);
       Fire _fire = new Fire();
       _$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER.emit(_fire, null);

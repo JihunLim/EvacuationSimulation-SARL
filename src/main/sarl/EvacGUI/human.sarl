@@ -41,6 +41,8 @@ agent human_child_male {
 		// set initialize the variables
 		agent_id = state.agent_number
 		state.agent_number++
+		var state = new state()
+		state.change_direction(agent_id, 800, 500)
 		println(agent_id)
 
 		// implements the skills & capacity!
@@ -50,12 +52,14 @@ agent human_child_male {
 		// set the behavior
 		var beh = new YMBehavior(this)
 		registerBehavior(beh)
+		
+		
 
-
-
-		if (agent_id == 1) {
+		if (agent_id == 0) {
 			emit(new Fire, null)
 		}
+
+
 	}
 
 	on Initialize {
