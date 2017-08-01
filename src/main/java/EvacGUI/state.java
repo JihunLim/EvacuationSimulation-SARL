@@ -1,6 +1,4 @@
 package EvacGUI;
-import EvacGUI.canvas;
-import EvacGUI.canvas.ball;
 
 public class state {
 	static int agent_number = 0;

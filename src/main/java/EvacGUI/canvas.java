@@ -27,13 +27,13 @@ public class canvas extends JComponent implements KeyListener,MouseMotionListene
     {
         ballarray=new ArrayList(1);
         wallarray=new ArrayList(1);
-        b1=new My_box(0,0,wall_width,10);//top(-)
-        b2=new My_box(0,0,10,wall_height);//top-right(|)
-        b3=new My_box(0,0,wall_width+10,10);//bottom-left(-)
-        //b4=new My_box(0,0,(wall_width/2)-30,10);//bottom-right(-)
-        b5=new My_box(0,0,10,wall_height);//top-left(|)
+        b1=new My_box(0,0,wall_width,10);//top(m)
+        b2=new My_box(0,0,10,wall_height);//top-right(l)
+        b3=new My_box(0,0,wall_width+10,10);//bottom-left(m)
+        //b4=new My_box(0,0,(wall_width/2)-30,10);//bottom-right(m)
+        b5=new My_box(0,0,10,wall_height);//top-left(l)
         
-        wall1=new My_box(400,wall_height-5,60, 20);//top-left(|)
+        wall1=new My_box(400,wall_height-5,60, 20);//top-left(l)
         
         b1.setLocation(0,0);
         b2.setLocation(wall_width,0);
@@ -70,7 +70,7 @@ public class canvas extends JComponent implements KeyListener,MouseMotionListene
         wallarray.add(temp_box);
     }
  
-    //add a new ball by passing a “ball” class instance
+    //add a new ball by passing a "ball” class instance
     public void addBall()
     {
         //added to the arraylist
@@ -158,7 +158,7 @@ public class canvas extends JComponent implements KeyListener,MouseMotionListene
             
             for(ball temp_ball: ballarray)
             {
-                //drawing the ball using “drawBall(Graphics g,boolean)“.
+                //drawing the ball using "drawBall(Graphics g,boolean)".
                 //boolean is for displaying ball’s bounding rectangle which deals with 
                 temp_ball.drawBall(g, false);
               //******************************************************************** check touching part
