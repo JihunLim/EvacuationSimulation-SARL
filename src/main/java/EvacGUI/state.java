@@ -1,7 +1,5 @@
 package EvacGUI;
 
-import java.awt.geom.Area;
-
 public class state {
 	static int agent_number = 0;
 
