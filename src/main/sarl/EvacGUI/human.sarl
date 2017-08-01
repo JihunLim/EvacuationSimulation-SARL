@@ -44,7 +44,8 @@ agent human_child_male {
 		state.agent_number++
 		}
 		//var state = new state()
-		state.change_direction(agent_id, 800, 500)
+		state.calcMinDirection(agent_id)
+		//state.change_direction(agent_id, 800, 500)
 		println(agent_id)
 
 		// implements the skills & capacity!

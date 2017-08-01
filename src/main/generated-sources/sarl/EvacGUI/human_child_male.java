@@ -62,7 +62,7 @@ public class human_child_male extends Agent {
       this.agent_id = state.agent_number;
       state.agent_number++;
     }
-    state.change_direction(this.agent_id, 800, 500);
+    state.calcMinDirection(this.agent_id);
     InputOutput.<Integer>println(Integer.valueOf(this.agent_id));
     MoveSkills _moveSkills = new MoveSkills();
     this.<MoveSkills>setSkill(_moveSkills, Move.class);

@@ -25,7 +25,7 @@ public class state {
 	
 
 
-    public synchronized static void change_direction(int agent_id,int closestdoor_x, int closestdoor_y){
+    public synchronized static void change_direction(int agent_id,float goal_x, float goal_y){
 		int index = -1;	
     	for(int i=0; i< EvacGUI.canvas.ballarray.size(); i++){
     		if(EvacGUI.canvas.ballarray.get(i).ball_id==agent_id)
@@ -34,8 +34,8 @@ public class state {
     	float x=EvacGUI.canvas.ballarray.get(index).x_pos;
     	float y=EvacGUI.canvas.ballarray.get(index).y_pos;
     	System.out.println("change direction for " + agent_id);
-    	float diff_x = closestdoor_x-x;
-    	float diff_y = closestdoor_y-y;
+    	float diff_x = goal_x-x;
+    	float diff_y = goal_y-y;
     	float diff_xx = 0;
     	float diff_yy = 0;
     	if(diff_x<0){
@@ -69,4 +69,36 @@ public class state {
     	//System.out.println(normalized_diff_y);
     
 	}
+    
+    
+    public synchronized static void calcMinDirection(int agent_id) {
+
+		int i;
+		float minDis;
+		minDis = 999999;
+		float exp_min ;
+		float door_x;
+		float door_y ;
+		float goal_x = 0;
+		float goal_y = 0;
+
+		float getX = EvacGUI.state.getCoordX(1);
+		float getY = EvacGUI.state.getCoordY(1);
+
+		for (i = 0; i < base_frame.listDoor.size(); i++) {
+			door_x = base_frame.listDoor.get(i).door_center_x;
+			door_y = base_frame.listDoor.get(i).door_center_y;
+
+			exp_min = (door_x - getX) * (door_x - getX) + (door_y - getY) * (door_y - getY);
+			if (exp_min < minDis) {
+				minDis = exp_min;
+				goal_x = door_x;
+				goal_y = door_y;
+			}
+		}
+		//define
+        EvacGUI.state.change_direction(agent_id,goal_x,goal_y);
+        
+    }
+    
 }
