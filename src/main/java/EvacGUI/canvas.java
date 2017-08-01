@@ -168,6 +168,7 @@ public class canvas extends JComponent implements KeyListener,MouseMotionListene
         try{
             Thread.sleep(10);
             time_counter=time_counter+5;
+        
             if(time_counter%1000==0&&base_frame.startflag==1){
                 base_frame.timercount();
             }
@@ -178,7 +179,7 @@ public class canvas extends JComponent implements KeyListener,MouseMotionListene
             for(ball temp_ball: ballarray)
             {
                 //drawing the ball using 'drawBall(Graphics g,boolean)'.
-                //boolean is for displaying ball’s bounding rectangle which deals with 
+                //boolean is for displaying ball's bounding rectangle which deals with 
                 temp_ball.drawBall(g, false);
               //******************************************************************** check touching part
                 //checking for collision with our movable pad

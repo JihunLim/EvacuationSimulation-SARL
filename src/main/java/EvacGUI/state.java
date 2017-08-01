@@ -11,7 +11,7 @@ public class state {
 			if (EvacGUI.canvas.ballarray.get(i).ball_id == agent_id)
 				index = i;
 		}
-		System.out.println("aaaa");
+	
 		EvacGUI.canvas.ball temp_ball = EvacGUI.canvas.ballarray.get(index);
 		return temp_ball.x_pos;
 	}
@@ -65,7 +65,7 @@ public class state {
 		 */
 		EvacGUI.canvas.ballarray.get(index).dir_x = -diff_x;
 		EvacGUI.canvas.ballarray.get(index).dir_y = -diff_y;// normalized_diff_y;
-		System.out.println(diff_x);
+		
 		// System.out.println(normalized_diff_y);
 
 	}

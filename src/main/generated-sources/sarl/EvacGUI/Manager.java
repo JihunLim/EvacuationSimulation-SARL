@@ -55,6 +55,8 @@ public class Manager extends Agent {
   
   private int escapeHuman = 0;
   
+  private int total_agent_num = 0;
+  
   protected static void SpawnAgent() {
   }
   
@@ -84,6 +86,7 @@ public class Manager extends Agent {
             Logging _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER_1 = this.$castSkill(Logging.class, (this.$CAPACITY_USE$IO_SARL_CORE_LOGGING == null || this.$CAPACITY_USE$IO_SARL_CORE_LOGGING.get() == null) ? (this.$CAPACITY_USE$IO_SARL_CORE_LOGGING = this.$getSkill(Logging.class)) : this.$CAPACITY_USE$IO_SARL_CORE_LOGGING);
             _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER_1.info(("agent num is -> " + Integer.valueOf(base_frame.agent_num)));
             if ((base_frame.agent_num > 0)) {
+              this.total_agent_num = base_frame.agent_num;
               IntegerRange _upTo = new IntegerRange(1, base_frame.agent_num);
               for (final Integer i : _upTo) {
                 Lifecycle _$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE$CALLER_1 = this.$castSkill(Lifecycle.class, (this.$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE == null || this.$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE.get() == null) ? (this.$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE = this.$getSkill(Lifecycle.class)) : this.$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE);
@@ -96,7 +99,7 @@ public class Manager extends Agent {
             _$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS$CALLER.wake(_simulStart);
             base_frame.isSpawnAgent = false;
           }
-          if ((base_frame.agent_num >= (this.deadHuman + this.escapeHuman))) {
+          if (((this.total_agent_num > 0) && (this.total_agent_num <= (this.deadHuman + this.escapeHuman)))) {
             this.hasHuman = false;
           }
           if (((!this.hasHuman) && base_frame.isButtonClicked)) {
@@ -341,6 +344,8 @@ public class Manager extends Agent {
       return false;
     if (other.escapeHuman != this.escapeHuman)
       return false;
+    if (other.total_agent_num != this.total_agent_num)
+      return false;
     return super.equals(obj);
   }
   
@@ -355,6 +360,7 @@ public class Manager extends Agent {
     result = prime * result + this.livedManCount;
     result = prime * result + this.deadHuman;
     result = prime * result + this.escapeHuman;
+    result = prime * result + this.total_agent_num;
     return result;
   }
   

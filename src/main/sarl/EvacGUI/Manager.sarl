@@ -35,7 +35,7 @@ agent Manager {
 	var livedManCount : int
 	var deadHuman : int = 0
 	var escapeHuman : int = 0
-
+	var total_agent_num : int = 0
 	static def SpawnAgent : void {
 		// isSpawnAgent = true
 	}
@@ -61,6 +61,7 @@ agent Manager {
 						// set the proportion
 						info("agent num is -> " + base_frame.agent_num)
 						if (base_frame.agent_num > 0) {
+							total_agent_num = base_frame.agent_num
 							for (i : 1 .. base_frame.agent_num) { // 1 to 5
 							// info("aaa")
 								spawnInContext(typeof(human_child_male), getInnerContext)
@@ -73,7 +74,7 @@ agent Manager {
 						// emit(new Fire)
 					}
 
-					if (base_frame.agent_num >= (deadHuman + escapeHuman)){
+					if (total_agent_num > 0 && total_agent_num <= (deadHuman + escapeHuman)) {
 						hasHuman = false
 					}
 					
@@ -110,7 +111,6 @@ agent Manager {
 	on A_Escape [isSimulOpened] {
 		synchronized (this) {
 			escapeHuman += 1
-			
 		}
 	}
 

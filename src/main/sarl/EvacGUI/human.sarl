@@ -23,11 +23,6 @@ import io.sarl.core.Logging
 import io.sarl.core.Schedules
 import io.sarl.util.Scopes
 
-// import EvacGUI.Agent.test
-/** 
- * @author User
- * 
- */
 agent human_child_male {
 	uses Logging, InnerContextAccess, Behaviors, Lifecycle, Schedules, Behaviors, DefaultContextInteractions
 

@@ -7,10 +7,7 @@ class My_box extends Rectangle
 	
 	int testint = 4;
 	
-    //default vars
-    /*
-     * x,y,width,height
-     */
+  
 	
     public My_box(int x1,int y,int width,int height)
     {

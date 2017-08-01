@@ -17,10 +17,9 @@ import javax.swing.JSlider;
 import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-//******************************************************************** import part
-//******************************************************************** jframe part
+
 public class base_frame extends JFrame implements ActionListener, ChangeListener {
-    // ********************************************************************
+
     // define
     canvas draw_panel;
     JButton b_changebg,b_add,b_remove,b_start,b_doorAdd;
@@ -247,7 +246,7 @@ public class base_frame extends JFrame implements ActionListener, ChangeListener
         if(e.getSource() == b_doorAdd){
         	//make door
         	canvas.addDoor(door_x, door_y, door_width, door_height);
-        	//create the 'EscapeDoor' class with the x,y information and make the ArrayList as listDoor
+        	//create the 'EscapeDoor' class with the x, y information and make the ArrayList as listDoor
         	listDoor.add(new EscapeDoor(door_x, door_y, door_width, door_height));
         	group.clearSelection();
         	if(listDoor.size()>0){
