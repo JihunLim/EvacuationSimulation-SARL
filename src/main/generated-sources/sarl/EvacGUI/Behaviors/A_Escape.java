@@ -19,7 +19,4 @@ public class A_Escape extends Event {
   public A_Escape(final Address source) {
     super(source);
   }
-  
-  @SyntheticMember
-  private final static long serialVersionUID = 588368462L;
 }

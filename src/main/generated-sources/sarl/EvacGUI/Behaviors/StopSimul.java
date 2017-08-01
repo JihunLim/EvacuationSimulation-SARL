@@ -19,7 +19,4 @@ public class StopSimul extends Event {
   public StopSimul(final Address source) {
     super(source);
   }
-  
-  @SyntheticMember
-  private final static long serialVersionUID = 588368462L;
 }

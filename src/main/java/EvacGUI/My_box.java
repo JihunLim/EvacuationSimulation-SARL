@@ -15,7 +15,7 @@ class My_box extends Rectangle
     public My_box(int x1,int y,int width,int height)
     {
         super(x1,y,width,height);
-        human_child_male d = new human_child_male(null, null);
+       // human_child_male d = new human_child_male(null, null);
         
     }
     

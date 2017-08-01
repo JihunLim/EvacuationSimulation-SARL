@@ -14,13 +14,16 @@ import io.sarl.core.Logging
 behavior YMBehavior {
 	uses Logging
 	
+	def calcMinDirection {
+		//base_frame.listDoor
+	}
+	
 	on Fire {
 		info("Building is burnning!!")
 		var move = getSkill(Move)
 		//var escape = getSkill(Escape)
 		move.Escape
 		
-
 	}
 
 	on Initialize {

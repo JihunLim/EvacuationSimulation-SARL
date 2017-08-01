@@ -34,13 +34,13 @@ public class canvas extends JComponent implements KeyListener,MouseMotionListene
     {
         ballarray=new ArrayList(1);
         wallarray=new ArrayList(1);
-        b1=new My_box(0,0,wall_width,10);//top(m)
-        b2=new My_box(0,0,10,wall_height);//top-right(l)
-        b3=new My_box(0,0,wall_width+10,10);//bottom-left(m)
-        //b4=new My_box(0,0,(wall_width/2)-30,10);//bottom-right(m)
-        b5=new My_box(0,0,10,wall_height);//top-left(l)
+        b1=new My_box(0,0,wall_width,10);//top
+        b2=new My_box(0,0,10,wall_height);//top-right
+        b3=new My_box(0,0,wall_width+10,10);//bottom-left
+        //b4=new My_box(0,0,(wall_width/2)-30,10);//bottom-right
+        b5=new My_box(0,0,10,wall_height);//top-left
         
-        wall1=new My_box(400,wall_height-5,60, 20);//top-left(l)
+        wall1=new My_box(400,wall_height-5,60, 20);//top-left
         
         b1.setLocation(0,0);
         b2.setLocation(wall_width,0);
@@ -77,7 +77,7 @@ public class canvas extends JComponent implements KeyListener,MouseMotionListene
         wallarray.add(temp_box);
     }
  
-    //add a new ball by passing a "ball” class instance
+    //add a new ball by passing a 'ball' class instance
     public void addBall()
     {
         //added to the arraylist
@@ -104,10 +104,13 @@ public class canvas extends JComponent implements KeyListener,MouseMotionListene
           tempballarray.remove(temp_ball);
           base_frame.ballremoved();
           System.out.println("removed a ball!");
-          //repaint();//calls the paint method
+         
+          //repaint();
+          //calls the paint method
           if(tempballarray!=null){
               ballarray=tempballarray;
               ballarray.remove(evac_ball);
+              
           }
           repaint();//calls the paint method
     }
@@ -165,7 +168,7 @@ public class canvas extends JComponent implements KeyListener,MouseMotionListene
             
             for(ball temp_ball: ballarray)
             {
-                //drawing the ball using "drawBall(Graphics g,boolean)".
+                //drawing the ball using 'drawBall(Graphics g,boolean)'.
                 //boolean is for displaying ball’s bounding rectangle which deals with 
                 temp_ball.drawBall(g, false);
               //******************************************************************** check touching part
@@ -186,6 +189,7 @@ public class canvas extends JComponent implements KeyListener,MouseMotionListene
                         tempballarray.remove(temp_ball);
                         base_frame.ballremoved();
                         System.out.println("removed a ball!");
+                        System.out.printf("arraylist : %d" , ballarray.size());
                         repaint();//calls the paint method
                     } 
                 	
@@ -245,7 +249,8 @@ public class canvas extends JComponent implements KeyListener,MouseMotionListene
          float dir_x=0;//1
          float dir_y=0;//1
          int size=0;
- 
+         int ball_id=0;
+         
         ball(int size)
         {
             this.size=size;
@@ -318,7 +323,7 @@ public class canvas extends JComponent implements KeyListener,MouseMotionListene
         {
             return new Rectangle((int)x_pos,(int)y_pos,size,size);
         }
-                //this method is called for all balls and checked whether it touches the rect.if so,the ball’s direction gets changed accordingly.
+                //this method is called for all balls and checked whether it touches the rect.if so,the ball's direction gets changed accordingly.
         public void collision(My_box rect)
         {
             //if ball collides with top/bottom part of the rect
