@@ -94,8 +94,8 @@ public class human_child_male extends Agent {
     Schedules _$CAPACITY_USE$IO_SARL_CORE_SCHEDULES$CALLER_2 = this.$castSkill(Schedules.class, (this.$CAPACITY_USE$IO_SARL_CORE_SCHEDULES == null || this.$CAPACITY_USE$IO_SARL_CORE_SCHEDULES.get() == null) ? (this.$CAPACITY_USE$IO_SARL_CORE_SCHEDULES = this.$getSkill(Schedules.class)) : this.$CAPACITY_USE$IO_SARL_CORE_SCHEDULES);
     final Procedure1<Agent> _function = (Agent it) -> {
       synchronized (this) {
-        state.reCalcDirection(this.agent_id);
         state.collisionAvoid(this.agent_id);
+        state.reCalcDirection(this.agent_id);
       }
     };
     _$CAPACITY_USE$IO_SARL_CORE_SCHEDULES$CALLER_2.every(waitTask, 10, _function);

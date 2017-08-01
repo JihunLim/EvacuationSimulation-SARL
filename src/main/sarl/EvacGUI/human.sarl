@@ -67,14 +67,14 @@ agent human_child_male {
 
 		state.calcMinDirection(agent_id)
 		val directTask = task("wait-task")
-
+	
 		
 		var state = new state()
 		val waitTask = task("wait-task")
 		waitTask.every(10) [
 			synchronized (this) {
-				state.reCalcDirection(agent_id)
 				state.collisionAvoid(agent_id)
+				state.reCalcDirection(agent_id)
 			}
 
 		]
