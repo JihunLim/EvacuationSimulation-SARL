@@ -4,27 +4,36 @@ public class state {
 	static int agent_number = 0;
 
 	public static float getCoordX(int agent_id) {
-		int index = -1;
+		int index = 0;
+		
+		
 		for (int i = 0; i < EvacGUI.canvas.ballarray.size(); i++) {
 			if (EvacGUI.canvas.ballarray.get(i).ball_id == agent_id)
 				index = i;
 		}
+		System.out.println("aaaa");
 		EvacGUI.canvas.ball temp_ball = EvacGUI.canvas.ballarray.get(index);
 		return temp_ball.x_pos;
 	}
 
 	public static float getCoordY(int agent_id) {
-		int index = -1;
+		int index = 0;
 		for (int i = 0; i < EvacGUI.canvas.ballarray.size(); i++) {
 			if (EvacGUI.canvas.ballarray.get(i).ball_id == agent_id)
 				index = i;
 		}
+	
 		EvacGUI.canvas.ball temp_ball = EvacGUI.canvas.ballarray.get(index);
 		return temp_ball.y_pos;
 	}
 
 	public synchronized static void change_direction(int agent_id, float goal_x, float goal_y) {
-		int index = -1;
+		int index = 0;
+		
+		if (EvacGUI.canvas.ballarray.size() < 1){
+			return ;
+		}
+		
 		for (int i = 0; i < EvacGUI.canvas.ballarray.size(); i++) {
 			if (EvacGUI.canvas.ballarray.get(i).ball_id == agent_id)
 				index = i;
@@ -92,25 +101,44 @@ public class state {
 	}
 	
 	public synchronized void reCalcDirection(int agent_id){
-		int index=-1;
+		int index=0;
+		
+		if (EvacGUI.canvas.ballarray.size() < 1){
+			return ;
+		}
+		
 		for (int i = 0; i < EvacGUI.canvas.ballarray.size(); i++) {
 			if (EvacGUI.canvas.ballarray.get(i).ball_id == agent_id)
 				index = i;
+				break;
 		}
 		EvacGUI.state.change_direction(agent_id, EvacGUI.canvas.ballarray.get(index).goal_x, EvacGUI.canvas.ballarray.get(index).goal_y);
 	}
 
 	public synchronized void collisionAvoid(int agent_id) {
-
-	    float x = canvas.ballarray.get(agent_id).x_pos;
-		float y = canvas.ballarray.get(agent_id).y_pos;
+		
+		if (EvacGUI.canvas.ballarray.size() < 1){
+			return ;
+		}
+		
+		//matching the agent_id and real array index
+		int index = 0;
+		for (int i = 0; i < EvacGUI.canvas.ballarray.size(); i++) {
+			if (EvacGUI.canvas.ballarray.get(i).ball_id == agent_id){
+				index = i;
+				break;
+			}
+		}
+		
+	    float x = canvas.ballarray.get(index).x_pos;
+		float y = canvas.ballarray.get(index).y_pos;
 		float otherx = 0;
 		float othery = 0;
-		if (canvas.ballarray.get(agent_id).backup_dirx != -1) {
-			canvas.ballarray.get(agent_id).dir_x = canvas.ballarray.get(agent_id).backup_dirx;
-			canvas.ballarray.get(agent_id).dir_y = canvas.ballarray.get(agent_id).backup_diry;
-			canvas.ballarray.get(agent_id).backup_dirx=-1;
-			canvas.ballarray.get(agent_id).backup_diry=-1;
+		if (canvas.ballarray.get(index).backup_dirx != -1) {
+			canvas.ballarray.get(index).dir_x = canvas.ballarray.get(index).backup_dirx;
+			canvas.ballarray.get(index).dir_y = canvas.ballarray.get(index).backup_diry;
+			canvas.ballarray.get(index).backup_dirx=-1;
+			canvas.ballarray.get(index).backup_diry=-1;
 		}
 		for (int i = 0; i < canvas.ballarray.size(); i++) {
 			otherx = canvas.ballarray.get(i).x_pos;
@@ -121,12 +149,12 @@ public class state {
 				x = -x;
 			if (y < 0)
 				y = -y;
-			if (x + y < 10&&canvas.ballarray.get(agent_id).backup_dirx == -1) {
+			if (x + y < 10&&canvas.ballarray.get(index).backup_dirx == -1) {
 				if (agent_id != canvas.ballarray.get(i).ball_id) {
-					canvas.ballarray.get(agent_id).backup_dirx = canvas.ballarray.get(agent_id).dir_x;
-					canvas.ballarray.get(agent_id).backup_diry = canvas.ballarray.get(agent_id).dir_y;
-					canvas.ballarray.get(agent_id).dir_x =  -canvas.ballarray.get(agent_id).dir_x;
-					canvas.ballarray.get(agent_id).dir_y =  -canvas.ballarray.get(agent_id).dir_y;
+					canvas.ballarray.get(index).backup_dirx = canvas.ballarray.get(index).dir_x;
+					canvas.ballarray.get(index).backup_diry = canvas.ballarray.get(index).dir_y;
+					canvas.ballarray.get(index).dir_x =  -canvas.ballarray.get(index).dir_x;
+					canvas.ballarray.get(index).dir_y =  -canvas.ballarray.get(index).dir_y;
 				}
 			}
 

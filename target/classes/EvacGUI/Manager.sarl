@@ -71,7 +71,7 @@ agent Manager {
 					
 						wake(new SimulStart(1)) // start the evacuation simulation with the mode 1
 						base_frame.isSpawnAgent = false
-						var superScope = Scopes.addresses(defaultSpace.getAddress(innerContext.ID))
+						//var superScope = Scopes.addresses(defaultSpace.getAddress(innerContext.ID))
 						//emit(new Fire)
 					}
 					
