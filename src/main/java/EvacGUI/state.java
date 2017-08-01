@@ -121,7 +121,7 @@ public class state {
 				x = -x;
 			if (y < 0)
 				y = -y;
-			if (x + y < 20&&canvas.ballarray.get(agent_id).backup_dirx == -1) {
+			if (x + y < 10&&canvas.ballarray.get(agent_id).backup_dirx == -1) {
 				if (agent_id != canvas.ballarray.get(i).ball_id) {
 					canvas.ballarray.get(agent_id).backup_dirx = canvas.ballarray.get(agent_id).dir_x;
 					canvas.ballarray.get(agent_id).backup_diry = canvas.ballarray.get(agent_id).dir_y;
