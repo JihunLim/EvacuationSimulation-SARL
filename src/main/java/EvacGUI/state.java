@@ -1,5 +1,7 @@
 package EvacGUI;
 
+import java.awt.geom.Area;
+
 public class state {
 	static int agent_number = 0;
 
@@ -124,10 +126,15 @@ public class state {
 				index = i;
 				break;
 		}
+		
+		if(index==-1){
+			return;
+		}
 		EvacGUI.state.change_direction(agent_id, EvacGUI.canvas.ballarray.get(index).goal_x, EvacGUI.canvas.ballarray.get(index).goal_y);
 	}
 
 	public synchronized void collisionAvoid(int agent_id) {
+<<<<<<< HEAD
 		
 		if (EvacGUI.canvas.ballarray.size() < 1){
 			return ;
@@ -144,6 +151,19 @@ public class state {
 		
 	    float x = canvas.ballarray.get(index).x_pos;
 		float y = canvas.ballarray.get(index).y_pos;
+=======
+		int index=-1;
+		for (int i = 0; i < EvacGUI.canvas.ballarray.size(); i++) {
+			if (EvacGUI.canvas.ballarray.get(i).ball_id == agent_id)
+				index = i;
+		}
+		agent_id=index;
+		if(agent_id==-1){
+			return;
+		}
+	    float x = canvas.ballarray.get(agent_id).x_pos;
+		float y = canvas.ballarray.get(agent_id).y_pos;
+>>>>>>> 5377dd1369e1aee0beb8dac05f1fa609673f8c32
 		float otherx = 0;
 		float othery = 0;
 		if (canvas.ballarray.get(index).backup_dirx != -1) {
@@ -161,12 +181,28 @@ public class state {
 				x = -x;
 			if (y < 0)
 				y = -y;
+<<<<<<< HEAD
 			if (x + y < 10&&canvas.ballarray.get(index).backup_dirx == -1) {
 				if (agent_id != canvas.ballarray.get(i).ball_id) {
 					canvas.ballarray.get(index).backup_dirx = canvas.ballarray.get(index).dir_x;
 					canvas.ballarray.get(index).backup_diry = canvas.ballarray.get(index).dir_y;
 					canvas.ballarray.get(index).dir_x =  -canvas.ballarray.get(index).dir_x;
 					canvas.ballarray.get(index).dir_y =  -canvas.ballarray.get(index).dir_y;
+=======
+			if (x + y < 20&&canvas.ballarray.get(agent_id).backup_dirx == -1) {
+				 int choice=(int) (Math.random()*2%(2));
+				if (agent_id != canvas.ballarray.get(i).ball_id&&choice==0) {
+					canvas.ballarray.get(agent_id).backup_dirx = canvas.ballarray.get(agent_id).dir_x;
+					canvas.ballarray.get(agent_id).backup_diry = canvas.ballarray.get(agent_id).dir_y;
+					canvas.ballarray.get(agent_id).dir_x =  -canvas.ballarray.get(agent_id).dir_x;
+					canvas.ballarray.get(agent_id).dir_y =  -canvas.ballarray.get(agent_id).dir_y;
+>>>>>>> 5377dd1369e1aee0beb8dac05f1fa609673f8c32
+				}
+				if (agent_id != canvas.ballarray.get(i).ball_id&&choice==1) {
+					canvas.ballarray.get(agent_id).backup_dirx = canvas.ballarray.get(agent_id).dir_x;
+					canvas.ballarray.get(agent_id).backup_diry = canvas.ballarray.get(agent_id).dir_y;
+					canvas.ballarray.get(agent_id).dir_x =  0;
+					canvas.ballarray.get(agent_id).dir_y =  0;
 				}
 			}
 
