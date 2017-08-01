@@ -3,7 +3,6 @@
  */
 package EvacGUI.Behaviors
 
-import EvacGUI.base_frame
 import EvacGUI.state
 import io.sarl.core.Destroy
 import io.sarl.core.Initialize
@@ -18,36 +17,7 @@ behavior YMBehavior {
 
 	var getX = state.getCoordX(1)
 	var getY = state.getCoordY(1)
-
-	def calcMinDirection {
-
-		var i : int
-		var minDis : float
-		minDis = 999999
-		var exp_min : float
-		var door_x : float
-		var door_y : float
-		var goal_x : float
-		var goal_y : float
-
-		var getX = state.getCoordX(1)
-		var getY = state.getCoordY(1)
-
-		for (i = 0; i < base_frame.listDoor.size(); i++) {
-			door_x = base_frame.listDoor.get(i).door_center_x
-			door_y = base_frame.listDoor.get(i).door_center_y
-
-			exp_min = (door_x - getX) * (door_x - getX) + (door_y - getY) * (door_y - getY)
-			if (exp_min < minDis) {
-				minDis = exp_min
-				goal_x = door_x
-				goal_y = door_y
-			}
-		}
-		//define
-        //state.change_direction(agent_id,goal_x,goal_y)
-        
-    }
+	
 	on Fire {
 		info("Building is burnning!!")
 		var move = getSkill(Move)

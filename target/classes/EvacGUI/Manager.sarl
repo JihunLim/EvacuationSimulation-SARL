@@ -82,7 +82,6 @@ agent Manager {
 
 						wake(new StopSimul)
 					}
-					
 					//hasHuman = false
 
 				}

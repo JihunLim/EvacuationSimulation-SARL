@@ -81,9 +81,26 @@ public class canvas extends JComponent implements KeyListener,MouseMotionListene
     public void addBall()
     {
         //added to the arraylist
+    	int flag=1;
         ball temp_ball = new ball();
-        temp_ball.x_pos=(int) (Math.random()*wall_width%(wall_width-10));
-        temp_ball.y_pos= (int) (Math.random()*wall_height%(wall_height-10));
+        while(true){
+        if(flag==0)
+        	break;
+        flag=0;
+        temp_ball.x_pos=(int) (Math.random()*wall_width%(wall_width-30));
+        temp_ball.y_pos= (int) (Math.random()*wall_height%(wall_height-30));
+        for(int i=0;i<ballarray.size();i++){
+        	float x=temp_ball.x_pos-ballarray.get(i).x_pos;
+        	float y=temp_ball.y_pos-ballarray.get(i).y_pos;
+        	if(x<0)
+        		x=-x;
+        	if(y<0)
+        		y=-y;
+        	if(x+y<40){
+        		flag=1;
+        	}
+        }
+        }
         ballarray.add(temp_ball);
         ballarray.get(ballarray.size()-1).ball_id = ballarray.size() -1 ;
         System.out.printf("ball id : %d", ballarray.get(ballarray.size()-1).ball_id);
@@ -158,7 +175,7 @@ public class canvas extends JComponent implements KeyListener,MouseMotionListene
         
         ball evac_ball = new ball();
         try{
-            Thread.sleep(5);
+            Thread.sleep(10);
             time_counter=time_counter+5;
             if(time_counter%1000==0&&base_frame.startflag==1){
                 base_frame.timercount();
@@ -251,7 +268,10 @@ public class canvas extends JComponent implements KeyListener,MouseMotionListene
          float dir_y=0;//1
          int size=20;
          int ball_id=0;
-         
+         float backup_dirx=-1;
+         float backup_diry=-1;
+         float goal_x=0;
+         float goal_y=0;
         ball()
         {
         }
@@ -299,12 +319,12 @@ public class canvas extends JComponent implements KeyListener,MouseMotionListene
  
         public void changeDirection_Y()
         {
-        	dir_y=-dir_y;
+        	dir_y=0;//-dir_y
         }
  
         public void changeDirection_X()
         {
-           dir_x=-dir_x;
+           dir_x=0;//-dir_x;
         }
  
         public void drawBall(Graphics g, boolean bound)

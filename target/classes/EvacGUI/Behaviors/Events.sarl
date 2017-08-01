@@ -17,7 +17,6 @@ event SimulStart {
 	// mode 1 -> escape ring, 2 -> fire
 	new(mode : int) {
 		this.mode = mode
-
 	}
 }
 
