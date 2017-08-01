@@ -6,7 +6,6 @@ package EvacGUI
 import EvacGUI.Behaviors.A_Dead
 import EvacGUI.Behaviors.A_Escape
 import EvacGUI.Behaviors.A_Here
-import EvacGUI.Behaviors.Fire
 import EvacGUI.Behaviors.SimulStart
 import EvacGUI.Behaviors.StopSimul
 import io.sarl.core.AgentKilled
