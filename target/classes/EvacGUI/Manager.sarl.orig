@@ -1,0 +1,132 @@
+/** 
+ * 
+ */
+package EvacGUI
+
+import EvacGUI.Behaviors.A_Dead
+import EvacGUI.Behaviors.A_Escape
+import EvacGUI.Behaviors.A_Here
+import EvacGUI.Behaviors.SimulStart
+import EvacGUI.Behaviors.StopSimul
+import io.sarl.core.AgentKilled
+import io.sarl.core.AgentSpawned
+import io.sarl.core.Behaviors
+import io.sarl.core.DefaultContextInteractions
+import io.sarl.core.Destroy
+import io.sarl.core.Initialize
+import io.sarl.core.InnerContextAccess
+import io.sarl.core.Lifecycle
+import io.sarl.core.Logging
+import io.sarl.core.Schedules
+import io.sarl.util.Scopes
+
+import static EvacGUI.base_frame.*
+
+/** 
+ * @author User
+ * 
+ */
+ 
+agent Manager {
+	uses Logging, InnerContextAccess, Behaviors, Lifecycle, Schedules, Behaviors, DefaultContextInteractions
+
+	// static var isSpawnAgent = false
+	var isSimulOpened = true
+	var hasHuman = true // false
+	var livedManCount : int
+	var deadHuman : int = 0
+	var escapeHuman : int = 0
+
+	static def SpawnAgent : void {
+		// isSpawnAgent = true
+	}
+
+	on Initialize {
+		// Event trigger before the agent begin to live or to be used.
+		// You should put all the initialization statements in this block of code.
+		info("The Manager agent of Evacuation Simulation is initialize!")
+		var start = new base_frame()
+		var state = new state()
+		val waitTask = task("wait-task")
+		waitTask.every(1000) [
+			synchronized (this) {
+				if (!isSimulOpened) {
+					if (!hasMemberAgent) {
+						waitTask.cancel
+						killMe
+					}
+				} else {
+					if (base_frame.isSpawnAgent) {
+						// Spawn Agent
+						// emit(new SpawnAgentEvent, null)
+						// set the proportion
+						info("agent num is -> " + base_frame.agent_num)
+						if (base_frame.agent_num > 0) {
+							for (i : 1 .. base_frame.agent_num) { // 1 to 5
+							// info("aaa")
+								spawnInContext(typeof(human_child_male), getInnerContext)
+							}
+						}
+
+						wake(new SimulStart(1)) // start the evacuation simulation with the mode 1
+						base_frame.isSpawnAgent = false
+						//var superScope = Scopes.addresses(defaultSpace.getAddress(defaultContext.ID))
+						// emit(new Fire)
+					}
+
+					if (base_frame.agent_num >= (deadHuman + escapeHuman)){
+						hasHuman = false
+					}
+					
+					
+					if (!hasHuman && isButtonClicked) { // there are no people in the building except the dead
+						isSimulOpened = false
+						// print the information who escaped people or dead people etc.
+						println("the number of man who lived from the hell is : " + livedManCount)
+						startflag = 0
+
+						wake(new StopSimul)
+					}
+					// hasHuman = false
+				}
+			}
+		]
+
+	}
+
+	//no use
+	on A_Here [isSimulOpened] {
+		synchronized (this) {
+			hasHuman = true
+
+		}
+	}
+
+	on A_Dead [isSimulOpened] {
+		synchronized (this) {
+			deadHuman += 1
+		}
+	}
+
+	on A_Escape [isSimulOpened] {
+		synchronized (this) {
+			escapeHuman += 1
+			
+		}
+	}
+
+	on Destroy {
+		// Event trigger when the agent is destroyed from the system.
+		// You should put all the resource releasing statements in this block of code.
+		info("The agent was stopped.")
+	}
+
+	on AgentSpawned {
+		// A new agent has been spawned in our context.
+		// println("Manager agent is spawned!")
+	}
+
+	on AgentKilled {
+		// A new agent has been killed in our context.
+	}
+}
