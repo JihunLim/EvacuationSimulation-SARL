@@ -3,6 +3,7 @@
  */
 package EvacGUI
 
+import EvacGUI.Behaviors.A_Escape
 import EvacGUI.Behaviors.Escape
 import EvacGUI.Behaviors.EscapeSkills
 import EvacGUI.Behaviors.Fire
@@ -20,6 +21,7 @@ import io.sarl.core.InnerContextAccess
 import io.sarl.core.Lifecycle
 import io.sarl.core.Logging
 import io.sarl.core.Schedules
+import io.sarl.util.Scopes
 
 // import EvacGUI.Agent.test
 /** 
@@ -89,6 +91,8 @@ agent human_child_male {
 		// Event trigger when the agent is destroyed from the system.
 		// You should put all the resource releasing statements in this block of code.
 		info("The agent was stopped.")
+		var superScope = Scopes.addresses(defaultSpace.getAddress(defaultContext.ID))
+		emit(new A_Escape, superScope)
 	}
 
 	on AgentSpawned {

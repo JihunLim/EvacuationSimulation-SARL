@@ -96,9 +96,13 @@ public class Manager extends Agent {
             _$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS$CALLER.wake(_simulStart);
             base_frame.isSpawnAgent = false;
           }
+          if ((base_frame.agent_num >= (this.deadHuman + this.escapeHuman))) {
+            this.hasHuman = false;
+          }
           if (((!this.hasHuman) && base_frame.isButtonClicked)) {
             this.isSimulOpened = false;
             InputOutput.<String>println(("the number of man who lived from the hell is : " + Integer.valueOf(this.livedManCount)));
+            base_frame.startflag = 0;
             Behaviors _$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS$CALLER_1 = this.$castSkill(Behaviors.class, (this.$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS == null || this.$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS.get() == null) ? (this.$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS = this.$getSkill(Behaviors.class)) : this.$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS);
             StopSimul _stopSimul = new StopSimul();
             _$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS$CALLER_1.wake(_stopSimul);

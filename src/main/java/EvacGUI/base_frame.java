@@ -28,6 +28,7 @@ public class base_frame extends JFrame implements ActionListener, ChangeListener
     static int agent_eva = 0;
     JPanel ui_panel,ui_panel1,ui_panel2,ui_panel3,ui_panel1_2;
     JLabel agent_number = new JLabel("total agent number : ");
+    JLabel caution = new JLabel("               If you start it, make door first!");
     static JLabel agent_number2 = new JLabel("0");
     static JLabel agent_number3 = new JLabel("0");
     JLabel layout_agentNum = new JLabel("Input the agent number : ");
@@ -122,6 +123,7 @@ public class base_frame extends JFrame implements ActionListener, ChangeListener
         ui_panel2.add(agent_number2);
         ui_panel2.add(timerLabel);
         ui_panel2.add(timerLabel2);
+        ui_panel2.add(caution);
         
         ui_panel1_2.setLayout(new FlowLayout());
         ui_panel1_2.add(ui_panel1);
@@ -149,8 +151,10 @@ public class base_frame extends JFrame implements ActionListener, ChangeListener
         ui_panel3.add(b_left);
         ui_panel3.add(b_doorAdd);
         
+        //button settings
+        b_start.setEnabled(false);
         
-        //ui_panel3.add(door_total_num);
+        
         
         //add ui_panel which is the basic UI
         ui_panel.setLayout(new GridLayout(3,1));
@@ -246,6 +250,10 @@ public class base_frame extends JFrame implements ActionListener, ChangeListener
         	//create the 'EscapeDoor' class with the x,y information and make the ArrayList as listDoor
         	listDoor.add(new EscapeDoor(door_x, door_y, door_width, door_height));
         	group.clearSelection();
+        	if(listDoor.size()>0){
+        		b_start.setEnabled(true);
+        		caution.setText("               Now, You can start now!");
+        	}
         }
     }
     

@@ -146,24 +146,15 @@ public class canvas extends JComponent implements KeyListener,MouseMotionListene
         if(bg_change)
         {
             color=color-incr;
- 
-             if(color<1)                         
-                        {
-                                    incr=-1;                         
-                        }             
-                         if(color>250)
-            {
-                incr=1;
-            }
-            g.setColor(new Color(color,color,color));
+             if(color<1) incr=-1;          
+             if(color>250) incr=1;
+             g.setColor(new Color(color,color,color));
         }
-        else
-        {
-            color=254;
-            g.setColor(Color.WHITE);
+        else {
+        color=254; g.setColor(Color.WHITE);
         }
         g.fillRect(0,0,getWidth(),getHeight());
- 
+        
         //my box
         g.setColor(Color.BLACK);
         b1.drawBox(g, "red");

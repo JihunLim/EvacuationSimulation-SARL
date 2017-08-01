@@ -28,7 +28,7 @@ public class state {
 	}
 
 	public synchronized static void change_direction(int agent_id, float goal_x, float goal_y) {
-		int index = 0;
+		int index = -1;
 		
 		if (EvacGUI.canvas.ballarray.size() < 1){
 			return ;

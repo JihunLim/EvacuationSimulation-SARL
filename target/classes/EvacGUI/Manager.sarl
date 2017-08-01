@@ -71,14 +71,20 @@ agent Manager {
 					
 						wake(new SimulStart(1)) // start the evacuation simulation with the mode 1
 						base_frame.isSpawnAgent = false
-						//var superScope = Scopes.addresses(defaultSpace.getAddress(innerContext.ID))
+						//var superScope = Scopes.addresses(defaultSpace.getAddress(defaultContext.ID))
 						//emit(new Fire)
 					}
+					
+					if (base_frame.agent_num >= (deadHuman + escapeHuman)){
+						hasHuman = false
+					}
+					
 					
 					if (!hasHuman && isButtonClicked) { // there are no people in the building except the dead
 						isSimulOpened = false
 						// print the information who escaped people or dead people etc.
 						println("the number of man who lived from the hell is : " + livedManCount)
+						startflag = 0
 
 						wake(new StopSimul)
 					}
@@ -92,7 +98,7 @@ agent Manager {
 	}
 	
 	
-	
+	//no use
 	on A_Here [isSimulOpened] {
 		synchronized (this) {
 			hasHuman = true
@@ -109,6 +115,7 @@ agent Manager {
 	on A_Escape [isSimulOpened] {
 		synchronized (this) {
 			escapeHuman += 1
+			
 		}
 	}
 
