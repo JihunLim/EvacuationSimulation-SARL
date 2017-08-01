@@ -2,6 +2,8 @@ package EvacGUI.Behaviors;
 
 import EvacGUI.Behaviors.Fire;
 import EvacGUI.Behaviors.Move;
+import EvacGUI.base_frame;
+import EvacGUI.state;
 import io.sarl.core.Destroy;
 import io.sarl.core.Initialize;
 import io.sarl.core.Logging;
@@ -26,7 +28,33 @@ import org.eclipse.xtext.xbase.lib.Pure;
 @SarlElementType(18)
 @SuppressWarnings("all")
 public class YMBehavior extends Behavior {
+  private float getX = state.getCoordX(1);
+  
+  private float getY = state.getCoordY(1);
+  
   public void calcMinDirection() {
+    int i = 0;
+    float minDis = 0;
+    minDis = 999999;
+    float exp_min = 0;
+    float door_x = 0;
+    float door_y = 0;
+    float goal_x = 0;
+    float goal_y = 0;
+    float getX = state.getCoordX(1);
+    float getY = state.getCoordY(1);
+    for (i = 0; (i < base_frame.listDoor.size()); i++) {
+      {
+        door_x = base_frame.listDoor.get(i).door_center_x;
+        door_y = base_frame.listDoor.get(i).door_center_y;
+        exp_min = (((door_x - getX) * (door_x - getX)) + ((door_y - getY) * (door_y - getY)));
+        if ((exp_min < minDis)) {
+          minDis = exp_min;
+          goal_x = door_x;
+          goal_y = door_y;
+        }
+      }
+    }
   }
   
   @SyntheticMember
@@ -86,6 +114,35 @@ public class YMBehavior extends Behavior {
     assert occurrence != null;
     assert ___SARLlocal_runnableCollection != null;
     ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$Fire$0(occurrence));
+  }
+  
+  @Override
+  @Pure
+  @SyntheticMember
+  public boolean equals(final Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    YMBehavior other = (YMBehavior) obj;
+    if (Float.floatToIntBits(other.getX) != Float.floatToIntBits(this.getX))
+      return false;
+    if (Float.floatToIntBits(other.getY) != Float.floatToIntBits(this.getY))
+      return false;
+    return super.equals(obj);
+  }
+  
+  @Override
+  @Pure
+  @SyntheticMember
+  public int hashCode() {
+    int result = super.hashCode();
+    final int prime = 31;
+    result = prime * result + Float.floatToIntBits(this.getX);
+    result = prime * result + Float.floatToIntBits(this.getY);
+    return result;
   }
   
   @SyntheticMember

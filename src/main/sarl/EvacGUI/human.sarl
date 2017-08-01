@@ -39,9 +39,10 @@ agent human_child_male {
 		// println("mode is " + occurrence.mode)
 		println("agent which is " + this.ID + " is spawned!")
 		// set initialize the variables
+		synchronized(this){
 		agent_id = state.agent_number
-		state.input_id();
 		state.agent_number++
+		}
 		//var state = new state()
 		state.change_direction(agent_id, 800, 500)
 		println(agent_id)

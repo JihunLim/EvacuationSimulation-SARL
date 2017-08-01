@@ -58,9 +58,10 @@ public class human_child_male extends Agent {
     String _plus = ("agent which is " + _iD);
     String _plus_1 = (_plus + " is spawned!");
     InputOutput.<String>println(_plus_1);
-    this.agent_id = state.agent_number;
-    state.input_id();
-    state.agent_number++;
+    synchronized (this) {
+      this.agent_id = state.agent_number;
+      state.agent_number++;
+    }
     state.change_direction(this.agent_id, 800, 500);
     InputOutput.<Integer>println(Integer.valueOf(this.agent_id));
     MoveSkills _moveSkills = new MoveSkills();

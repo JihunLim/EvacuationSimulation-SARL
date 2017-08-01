@@ -2,7 +2,7 @@ package EvacGUI;
 
 public class EscapeDoor {
 	
-	float door_x, door_y, door_center_x, door_center_y;
+	public float door_x, door_y, door_center_x, door_center_y;
 	int door_width, door_height;
 	
 	public EscapeDoor(float _door_x, float _door_y, int _door_width, int _door_height) {

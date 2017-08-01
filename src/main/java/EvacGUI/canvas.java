@@ -23,8 +23,8 @@ public class canvas extends JComponent implements KeyListener,MouseMotionListene
     static ArrayList<ball> ballarray;
     static ArrayList<My_box> wallarray;
     ArrayList<ball> tempballarray;
-    ball temp_ball = new ball(20);
-    ball evac_ball = new ball(20);
+    ball temp_ball = new ball();
+    ball evac_ball = new ball();
     int time_counter=0;
     //my custom box
     
@@ -81,14 +81,15 @@ public class canvas extends JComponent implements KeyListener,MouseMotionListene
     public void addBall()
     {
         //added to the arraylist
-        ball temp_ball = new ball(20);
+        ball temp_ball = new ball();
         temp_ball.x_pos=(int) (Math.random()*wall_width%(wall_width-10));
         temp_ball.y_pos= (int) (Math.random()*wall_height%(wall_height-10));
         ballarray.add(temp_ball);
+        ballarray.get(ballarray.size()-1).ball_id = ballarray.size() -1 ;
+        System.out.printf("ball id : %d", ballarray.get(ballarray.size()-1).ball_id);
         base_frame.balladded();
         //change_direction(800,500);
     }
- 
     public void removeBall()
     {
         if(!ballarray.isEmpty())
@@ -155,7 +156,7 @@ public class canvas extends JComponent implements KeyListener,MouseMotionListene
         b5.drawBox(g, "red");
         //wall1.drawBox(g,  "green");
         
-        ball evac_ball = new ball(20);
+        ball evac_ball = new ball();
         try{
             Thread.sleep(5);
             time_counter=time_counter+5;
@@ -248,12 +249,11 @@ public class canvas extends JComponent implements KeyListener,MouseMotionListene
          float y_pos=0;
          float dir_x=0;//1
          float dir_y=0;//1
-         int size=0;
+         int size=20;
          int ball_id=0;
          
-        ball(int size)
+        ball()
         {
-            this.size=size;
         }
         
         public void removeBall()
