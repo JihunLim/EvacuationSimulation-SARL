@@ -158,7 +158,7 @@ public class canvas extends JComponent implements KeyListener,MouseMotionListene
         
         ball evac_ball = new ball();
         try{
-            Thread.sleep(5);
+            Thread.sleep(10);
             time_counter=time_counter+5;
             if(time_counter%1000==0&&base_frame.startflag==1){
                 base_frame.timercount();
@@ -251,6 +251,8 @@ public class canvas extends JComponent implements KeyListener,MouseMotionListene
          float dir_y=0;//1
          int size=20;
          int ball_id=0;
+         float backup_dirx=-1;
+         float backup_diry=-1;
          
         ball()
         {

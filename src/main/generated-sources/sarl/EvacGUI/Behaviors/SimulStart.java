@@ -52,4 +52,7 @@ public class SimulStart extends Event {
     result.append("mode  = ").append(this.mode);
     return result.toString();
   }
+  
+  @SyntheticMember
+  private final static long serialVersionUID = 595070504L;
 }

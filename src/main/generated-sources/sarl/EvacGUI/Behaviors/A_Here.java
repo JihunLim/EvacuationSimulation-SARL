@@ -19,4 +19,7 @@ public class A_Here extends Event {
   public A_Here(final Address source) {
     super(source);
   }
+  
+  @SyntheticMember
+  private final static long serialVersionUID = 588368462L;
 }
