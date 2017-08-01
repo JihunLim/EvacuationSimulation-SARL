@@ -34,7 +34,7 @@ agent Manager {
 	
 	//static var isSpawnAgent = false
 	var isSimulOpened = true
-	var hasHuman = false
+	var hasHuman = true //false
 	var livedManCount : int
 	var deadHuman : int = 0
 	var escapeHuman : int = 0
@@ -68,11 +68,11 @@ agent Manager {
 								spawnInContext(typeof(human_child_male), getInnerContext)
 								}
 							}
-						wake(new SimulStart(1)) // start the evacuation simulation with the mode 1
-						var superScope = Scopes.addresses(defaultSpace.getAddress(innerContext.ID))
 					
-						emit(new Fire, superScope)
+						wake(new SimulStart(1)) // start the evacuation simulation with the mode 1
 						base_frame.isSpawnAgent = false
+						var superScope = Scopes.addresses(defaultSpace.getAddress(innerContext.ID))
+						emit(new Fire)
 					}
 					
 					if (!hasHuman && isButtonClicked) { // there are no people in the building except the dead
@@ -82,7 +82,8 @@ agent Manager {
 
 						wake(new StopSimul)
 					}
-					hasHuman = false
+					
+					//hasHuman = false
 
 				}
 			}
