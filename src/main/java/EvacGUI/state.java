@@ -70,8 +70,8 @@ public class state {
 		float exp_min;
 		float door_x;
 		float door_y;
-		float goal_x = 0;
-		float goal_y = 0;
+		//float goal_x = 0;
+		//float goal_y = 0;
 
 		float getX = EvacGUI.state.getCoordX(agent_id);
 		float getY = EvacGUI.state.getCoordY(agent_id);
@@ -83,14 +83,23 @@ public class state {
 			exp_min = (door_x - getX) * (door_x - getX) + (door_y - getY) * (door_y - getY);
 			if (exp_min < minDis) {
 				minDis = exp_min;
-				goal_x = door_x;
-				goal_y = door_y;
+				EvacGUI.canvas.ballarray.get(agent_id).goal_x = door_x;
+				EvacGUI.canvas.ballarray.get(agent_id).goal_y = door_y;
 			}
 		}
 		// define
-		EvacGUI.state.change_direction(agent_id, goal_x, goal_y);
+		EvacGUI.state.change_direction(agent_id, EvacGUI.canvas.ballarray.get(agent_id).goal_x, EvacGUI.canvas.ballarray.get(agent_id).goal_y);
 		minDis = 999999;
 
+	}
+	
+	public synchronized void reCalcDirection(int agent_id){
+		int index=-1;
+		for (int i = 0; i < EvacGUI.canvas.ballarray.size(); i++) {
+			if (EvacGUI.canvas.ballarray.get(i).ball_id == agent_id)
+				index = i;
+		}
+		EvacGUI.state.change_direction(agent_id, EvacGUI.canvas.ballarray.get(index).goal_x, EvacGUI.canvas.ballarray.get(index).goal_y);
 	}
 
 	public synchronized void collisionAvoid(int agent_id) {
@@ -114,7 +123,7 @@ public class state {
 				x = -x;
 			if (y < 0)
 				y = -y;
-			if (x + y < 12&&canvas.ballarray.get(agent_id).backup_dirx == -1) {
+			if (x + y < 20&&canvas.ballarray.get(agent_id).backup_dirx == -1) {
 				if (agent_id != canvas.ballarray.get(i).ball_id) {
 					canvas.ballarray.get(agent_id).backup_dirx = canvas.ballarray.get(agent_id).dir_x;
 					canvas.ballarray.get(agent_id).backup_diry = canvas.ballarray.get(agent_id).dir_y;

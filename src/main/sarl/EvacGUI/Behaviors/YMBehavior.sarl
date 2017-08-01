@@ -3,7 +3,6 @@
  */
 package EvacGUI.Behaviors
 
-import EvacGUI.base_frame
 import EvacGUI.state
 import io.sarl.core.Destroy
 import io.sarl.core.Initialize

@@ -82,8 +82,11 @@ public class canvas extends JComponent implements KeyListener,MouseMotionListene
     {
         //added to the arraylist
         ball temp_ball = new ball();
+        
         temp_ball.x_pos=(int) (Math.random()*wall_width%(wall_width-30));
         temp_ball.y_pos= (int) (Math.random()*wall_height%(wall_height-30));
+        
+        
         ballarray.add(temp_ball);
         ballarray.get(ballarray.size()-1).ball_id = ballarray.size() -1 ;
         System.out.printf("ball id : %d", ballarray.get(ballarray.size()-1).ball_id);
@@ -253,7 +256,8 @@ public class canvas extends JComponent implements KeyListener,MouseMotionListene
          int ball_id=0;
          float backup_dirx=-1;
          float backup_diry=-1;
-         
+         float goal_x=0;
+         float goal_y=0;
         ball()
         {
         }
@@ -301,12 +305,12 @@ public class canvas extends JComponent implements KeyListener,MouseMotionListene
  
         public void changeDirection_Y()
         {
-        	dir_y=-dir_y;
+        	dir_y=0;//-dir_y
         }
  
         public void changeDirection_X()
         {
-           dir_x=-dir_x;
+           dir_x=0;//-dir_x;
         }
  
         public void drawBall(Graphics g, boolean bound)
