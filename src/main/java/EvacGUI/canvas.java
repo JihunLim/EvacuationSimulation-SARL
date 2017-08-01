@@ -46,31 +46,7 @@ public class canvas extends JComponent implements KeyListener,MouseMotionListene
         setPreferredSize(new Dimension(width,height));
         setFocusable(true);
     }
-    
-
-    
-    public void change_direction(int closestdoor_x, int closestdoor_y){
-    	float x=ballarray.get(0).x_pos;
-    	float y=ballarray.get(0).y_pos;
-    	float diff_x = closestdoor_x-x;
-    	float diff_y = closestdoor_y-y;
-    	float normalized_diff_y;
-    	if(diff_x<0){
-    		normalized_diff_y=diff_y/diff_x;
-    		diff_x=1;
-    		
-    	}
-    	else {
-    		normalized_diff_y=-diff_y/diff_x;
-    		diff_x=-1;
-    	}
-    	
-    	ballarray.get(0).dir_x=diff_x;
-    	ballarray.get(0).dir_y=normalized_diff_y;
-    	System.out.println(diff_x);
-    	System.out.println(normalized_diff_y);
-    	
-    }
+   
  
     
     
@@ -103,7 +79,7 @@ public class canvas extends JComponent implements KeyListener,MouseMotionListene
         temp_ball.y_pos= (int) (Math.random()*wall_height%(wall_height-10));
         ballarray.add(temp_ball);
         base_frame.balladded();
-        change_direction(800,500);
+        //change_direction(800,500);
     }
  
     public void removeBall()
@@ -259,8 +235,8 @@ public class canvas extends JComponent implements KeyListener,MouseMotionListene
     {
          float x_pos=0;
          float y_pos=0;
-         float dir_x=1;
-         float dir_y=1;
+         float dir_x=0;//1
+         float dir_y=0;//1
          int size=0;
  
         ball(int size)
