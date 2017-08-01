@@ -82,8 +82,8 @@ public class canvas extends JComponent implements KeyListener,MouseMotionListene
     {
         //added to the arraylist
         ball temp_ball = new ball();
-        temp_ball.x_pos=(int) (Math.random()*wall_width%(wall_width-10));
-        temp_ball.y_pos= (int) (Math.random()*wall_height%(wall_height-10));
+        temp_ball.x_pos=(int) (Math.random()*wall_width%(wall_width-30));
+        temp_ball.y_pos= (int) (Math.random()*wall_height%(wall_height-30));
         ballarray.add(temp_ball);
         ballarray.get(ballarray.size()-1).ball_id = ballarray.size() -1 ;
         System.out.printf("ball id : %d", ballarray.get(ballarray.size()-1).ball_id);

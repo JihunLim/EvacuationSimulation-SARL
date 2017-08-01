@@ -82,8 +82,8 @@ public class state {
 		float goal_x = 0;
 		float goal_y = 0;
 
-		float getX = EvacGUI.state.getCoordX(1);
-		float getY = EvacGUI.state.getCoordY(1);
+		float getX = EvacGUI.state.getCoordX(agent_id);
+		float getY = EvacGUI.state.getCoordY(agent_id);
 
 		for (i = 0; i < base_frame.listDoor.size(); i++) {
 			door_x = base_frame.listDoor.get(i).door_center_x;
@@ -98,6 +98,7 @@ public class state {
 		}
 		//define
         EvacGUI.state.change_direction(agent_id,goal_x,goal_y);
+        minDis = 999999;
         
     }
     
