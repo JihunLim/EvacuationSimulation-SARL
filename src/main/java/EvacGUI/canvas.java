@@ -93,8 +93,8 @@ public class canvas extends JComponent implements KeyListener,MouseMotionListene
         if(flag==0)
         	break;
         flag=0;
-        temp_ball.x_pos=(int) (Math.random()*wall_width%(wall_width-30)+10);
-        temp_ball.y_pos= (int) (Math.random()*wall_height%(wall_height-30)+10);
+        temp_ball.x_pos=(int) (Math.random()*wall_width%(wall_width-40)+15);
+        temp_ball.y_pos= (int) (Math.random()*wall_height%(wall_height-40)+15);
         for(int i=0;i<ballarray.size();i++){
         	float x=temp_ball.x_pos-ballarray.get(i).x_pos;
         	float y=temp_ball.y_pos-ballarray.get(i).y_pos;
