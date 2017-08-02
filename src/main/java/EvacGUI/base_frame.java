@@ -218,7 +218,7 @@ public class base_frame extends JFrame implements ActionListener, ChangeListener
             isButtonClicked = true;
         }
         if(e.getSource() == b_doorBig){
-        	door_size = 50;
+        	door_size = 100;
         }else if(e.getSource() == b_doorSmall){
         	door_size = 30;
         }
