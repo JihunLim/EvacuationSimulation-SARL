@@ -264,6 +264,7 @@ public class canvas extends JComponent implements KeyListener,MouseMotionListene
          float backup_diry=-1;
          float goal_x=0;
          float goal_y=0;
+         int pushamount = 0;
         ball()
         {
         }

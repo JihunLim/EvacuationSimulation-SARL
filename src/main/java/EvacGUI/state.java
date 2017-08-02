@@ -27,6 +27,15 @@ public class state {
 		return temp_ball.y_pos;
 	}
 
+	public int getPushAmount(int agent_id){
+		int index = 0;
+		for (int i = 0; i < EvacGUI.canvas.ballarray.size(); i++) {
+			if (EvacGUI.canvas.ballarray.get(i).ball_id == agent_id)
+				index = i;
+		}
+		return canvas.ballarray.get(index).pushamount;
+	}
+	
 	public synchronized static void change_direction(int agent_id, float goal_x, float goal_y) {
 		int index = -1;
 		
@@ -41,7 +50,7 @@ public class state {
 		
 		float x = EvacGUI.canvas.ballarray.get(index).x_pos;
 		float y = EvacGUI.canvas.ballarray.get(index).y_pos;
-		System.out.println("change direction for " + agent_id);
+		//System.out.println("change direction for " + agent_id);
 		float diff_x = goal_x - x;
 		float diff_y = goal_y - y;
 		float diff_xx = 0;
@@ -160,10 +169,13 @@ public class state {
 				y = -y;
 			if (x + y < 10&&canvas.ballarray.get(index).backup_dirx == -1) {
 				if (agent_id != canvas.ballarray.get(i).ball_id) {
+					/*
 					canvas.ballarray.get(index).backup_dirx = canvas.ballarray.get(index).dir_x;
 					canvas.ballarray.get(index).backup_diry = canvas.ballarray.get(index).dir_y;
 					canvas.ballarray.get(index).dir_x =  -canvas.ballarray.get(index).dir_x;
 					canvas.ballarray.get(index).dir_y =  -canvas.ballarray.get(index).dir_y;
+					 */
+					canvas.ballarray.get(index).pushamount++;
 				}
 			}
 

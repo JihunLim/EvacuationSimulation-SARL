@@ -29,12 +29,12 @@ behavior YMBehavior {
 	on Initialize {
 		// Event trigger before the behavior begin to live or to be used.
 		// You should put all the initialization statements in this block of code.
-		info("The behavior was started.")
+		//info("The behavior was started.")
 	}
 
 	on Destroy {
 		// Event trigger when the behavior is destroyed from the system.
 		// You should put all the resource releasing statements in this block of code.
-		info("The behavior was stopped.")
+		//info("The behavior was stopped.")
 	}
 }

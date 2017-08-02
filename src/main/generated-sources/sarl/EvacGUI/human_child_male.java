@@ -101,8 +101,10 @@ public class human_child_male extends Agent {
         this.evacuated = state.collisionAvoid(this.agent_id);
         state.reCalcDirection(this.agent_id);
         if ((this.evacuated == 0)) {
-          String _plus_2 = (Integer.valueOf(this.agent_id) + "evacuated!");
-          InputOutput.<String>println(_plus_2);
+          String _plus_2 = (Integer.valueOf(this.agent_id) + "evacuated with push amount ");
+          int _pushAmount = state.getPushAmount(this.agent_id);
+          String _plus_3 = (_plus_2 + Integer.valueOf(_pushAmount));
+          InputOutput.<String>println(_plus_3);
           Lifecycle _$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE$CALLER = this.$castSkill(Lifecycle.class, (this.$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE == null || this.$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE.get() == null) ? (this.$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE = this.$getSkill(Lifecycle.class)) : this.$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE);
           _$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE$CALLER.killMe();
         }

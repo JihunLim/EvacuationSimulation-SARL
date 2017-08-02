@@ -117,7 +117,7 @@ agent Manager {
 	on Destroy {
 		// Event trigger when the agent is destroyed from the system.
 		// You should put all the resource releasing statements in this block of code.
-		info("The agent was stopped.")
+		//info("The agent was stopped.")
 	}
 
 	on AgentSpawned {

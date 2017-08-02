@@ -23,7 +23,6 @@ import io.sarl.core.Logging
 import io.sarl.core.Schedules
 import io.sarl.util.Scopes
 
-
 agent human_child_male {
 	uses Logging, InnerContextAccess, Behaviors, Lifecycle, Schedules, Behaviors, DefaultContextInteractions
 
@@ -77,7 +76,7 @@ agent human_child_male {
 				evacuated = state.collisionAvoid(agent_id)
 				state.reCalcDirection(agent_id)
 				if (evacuated == 0) {
-					println(agent_id + "evacuated!")
+					println(agent_id + "evacuated with push amount " + state.getPushAmount(agent_id))
 					killMe
 				}
 			}
