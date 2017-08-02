@@ -99,6 +99,10 @@ public class state {
 			if (EvacGUI.canvas.ballarray.get(i).ball_id == agent_id)
 				index = i;
 		}
+		
+		if(index==-1){
+			return;
+		}
 		EvacGUI.state.change_direction(agent_id, EvacGUI.canvas.ballarray.get(index).goal_x, EvacGUI.canvas.ballarray.get(index).goal_y);
 	}
 
@@ -109,7 +113,9 @@ public class state {
 				index = i;
 		}
 		agent_id=index;
-		
+		if(agent_id==-1){
+			return;
+		}
 	    float x = canvas.ballarray.get(agent_id).x_pos;
 		float y = canvas.ballarray.get(agent_id).y_pos;
 		float otherx = 0;
