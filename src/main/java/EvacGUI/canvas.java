@@ -339,7 +339,10 @@ public class canvas extends JComponent implements KeyListener,MouseMotionListene
           
             g.setColor(Color.GRAY);
             g.drawLine((int)x_pos+10, (int)y_pos+10, (int)goal_x,(int) goal_y);
-            g.setColor(Color.BLUE);
+            int blue = pushamount*5+50;
+            if(blue>255)
+            	blue=255;
+            g.setColor(new Color(0,0,blue));
             g.fillOval((int)x_pos,(int)y_pos,size,size);
             if(bound)
             {
