@@ -27,6 +27,19 @@ public class state {
 		return temp_ball.y_pos;
 	}
 
+	public void calculatePushAmount(){
+		float sum=0;
+		float push=0;
+		for(int i=0;i<canvas.pushamountarray.size();i++){
+			push=canvas.pushamountarray.get(i);
+			sum=sum+push;
+		}
+		float pushaverage=sum/canvas.pushamountarray.size();
+		System.out.println("the push average is" + pushaverage);
+		
+	}
+	
+	
 	public int getPushAmount(int agent_id){
 		int index = 0;
 		for (int i = 0; i < EvacGUI.canvas.ballarray.size(); i++) {
