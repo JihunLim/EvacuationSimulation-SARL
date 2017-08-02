@@ -113,35 +113,32 @@ public class state {
 	}
 	
 	public synchronized void reCalcDirection(int agent_id){
-		int index=0;
-		
-		if (EvacGUI.canvas.ballarray.size() < 1){
-			return ;
-		}
-		
+		int index=-1;
 		for (int i = 0; i < EvacGUI.canvas.ballarray.size(); i++) {
 			if (EvacGUI.canvas.ballarray.get(i).ball_id == agent_id)
 				index = i;
 				break;
 		}
+		if(index==-1)
+			return;
+		
 		EvacGUI.state.change_direction(agent_id, EvacGUI.canvas.ballarray.get(index).goal_x, EvacGUI.canvas.ballarray.get(index).goal_y);
 	}
 
-	public synchronized void collisionAvoid(int agent_id) {
-		
-		if (EvacGUI.canvas.ballarray.size() < 1){
-			return ;
-		}
+	public synchronized int collisionAvoid(int agent_id) {
 		
 		//matching the agent_id and real array index
-		int index = 0;
+		int index = -1;
 		for (int i = 0; i < EvacGUI.canvas.ballarray.size(); i++) {
 			if (EvacGUI.canvas.ballarray.get(i).ball_id == agent_id){
 				index = i;
 				break;
 			}
 		}
-		
+		if(index==-1){
+			return 0;
+			
+		}
 	    float x = canvas.ballarray.get(index).x_pos;
 		float y = canvas.ballarray.get(index).y_pos;
 		float otherx = 0;
@@ -171,6 +168,7 @@ public class state {
 			}
 
 		}
+		return 1;
 	}
 
 }

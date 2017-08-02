@@ -38,9 +38,6 @@ import org.eclipse.xtext.xbase.lib.IntegerRange;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.eclipse.xtext.xbase.lib.Pure;
 
-/**
- * @author User
- */
 @SarlSpecification("0.5")
 @SarlElementType(16)
 @SuppressWarnings("all")

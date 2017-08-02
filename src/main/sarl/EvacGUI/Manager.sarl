@@ -18,30 +18,23 @@ import io.sarl.core.InnerContextAccess
 import io.sarl.core.Lifecycle
 import io.sarl.core.Logging
 import io.sarl.core.Schedules
-import io.sarl.util.Scopes
 
 import static EvacGUI.base_frame.*
 
-/** 
- * @author User
- * 
- */
- 
 agent Manager {
-	uses Logging, InnerContextAccess, Behaviors, Lifecycle, Schedules, Behaviors, DefaultContextInteractions 
+	uses Logging, InnerContextAccess, Behaviors, Lifecycle, Schedules, Behaviors, DefaultContextInteractions
 
-	
-	//static var isSpawnAgent = false
+	// static var isSpawnAgent = false
 	var isSimulOpened = true
-	var hasHuman = true //false
+	var hasHuman = true // false
 	var livedManCount : int
 	var deadHuman : int = 0
 	var escapeHuman : int = 0
-	
-    static def SpawnAgent : void {
-		//isSpawnAgent = true
-    }
-    
+
+	static def SpawnAgent : void {
+		// isSpawnAgent = true
+	}
+
 	on Initialize {
 		// Event trigger before the agent begin to live or to be used.
 		// You should put all the initialization statements in this block of code.
@@ -57,24 +50,24 @@ agent Manager {
 						killMe
 					}
 				} else {
-					if (base_frame.isSpawnAgent){
+					if (base_frame.isSpawnAgent) {
 						// Spawn Agent
 						// emit(new SpawnAgentEvent, null)
 						// set the proportion
 						info("agent num is -> " + base_frame.agent_num)
 						if (base_frame.agent_num > 0) {
 							for (i : 1 .. base_frame.agent_num) { // 1 to 5
-							    //info("aaa")
+							// info("aaa")
 								spawnInContext(typeof(human_child_male), getInnerContext)
-								}
 							}
-					
+						}
+
 						wake(new SimulStart(1)) // start the evacuation simulation with the mode 1
 						base_frame.isSpawnAgent = false
-						//var superScope = Scopes.addresses(defaultSpace.getAddress(innerContext.ID))
-						//emit(new Fire)
+						// var superScope = Scopes.addresses(defaultSpace.getAddress(innerContext.ID))
+						// emit(new Fire)
 					}
-					
+
 					if (!hasHuman && isButtonClicked) { // there are no people in the building except the dead
 						isSimulOpened = false
 						// print the information who escaped people or dead people etc.
@@ -82,17 +75,13 @@ agent Manager {
 
 						wake(new StopSimul)
 					}
-					//hasHuman = false
-
+					// hasHuman = false
 				}
 			}
 		]
-		
-		
+
 	}
-	
-	
-	
+
 	on A_Here [isSimulOpened] {
 		synchronized (this) {
 			hasHuman = true
@@ -120,7 +109,7 @@ agent Manager {
 
 	on AgentSpawned {
 		// A new agent has been spawned in our context.
-		//println("Manager agent is spawned!")
+		// println("Manager agent is spawned!")
 	}
 
 	on AgentKilled {

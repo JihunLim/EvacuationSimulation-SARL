@@ -61,6 +61,8 @@ public class human_child_male extends Agent {
   
   private float currentY;
   
+  private int evacuated;
+  
   @SyntheticMember
   private void $behaviorUnit$SimulStart$0(final SimulStart occurrence) {
     UUID _iD = this.getID();
@@ -91,11 +93,18 @@ public class human_child_male extends Agent {
     state state = new EvacGUI.state();
     Schedules _$CAPACITY_USE$IO_SARL_CORE_SCHEDULES$CALLER_1 = this.$castSkill(Schedules.class, (this.$CAPACITY_USE$IO_SARL_CORE_SCHEDULES == null || this.$CAPACITY_USE$IO_SARL_CORE_SCHEDULES.get() == null) ? (this.$CAPACITY_USE$IO_SARL_CORE_SCHEDULES = this.$getSkill(Schedules.class)) : this.$CAPACITY_USE$IO_SARL_CORE_SCHEDULES);
     final AgentTask waitTask = _$CAPACITY_USE$IO_SARL_CORE_SCHEDULES$CALLER_1.task("wait-task");
+    this.evacuated = 1;
     Schedules _$CAPACITY_USE$IO_SARL_CORE_SCHEDULES$CALLER_2 = this.$castSkill(Schedules.class, (this.$CAPACITY_USE$IO_SARL_CORE_SCHEDULES == null || this.$CAPACITY_USE$IO_SARL_CORE_SCHEDULES.get() == null) ? (this.$CAPACITY_USE$IO_SARL_CORE_SCHEDULES = this.$getSkill(Schedules.class)) : this.$CAPACITY_USE$IO_SARL_CORE_SCHEDULES);
     final Procedure1<Agent> _function = (Agent it) -> {
       synchronized (this) {
-        state.collisionAvoid(this.agent_id);
+        this.evacuated = state.collisionAvoid(this.agent_id);
         state.reCalcDirection(this.agent_id);
+        if ((this.evacuated == 0)) {
+          String _plus_2 = (Integer.valueOf(this.agent_id) + "evacuated!");
+          InputOutput.<String>println(_plus_2);
+          Lifecycle _$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE$CALLER = this.$castSkill(Lifecycle.class, (this.$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE == null || this.$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE.get() == null) ? (this.$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE = this.$getSkill(Lifecycle.class)) : this.$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE);
+          _$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE$CALLER.killMe();
+        }
       }
     };
     _$CAPACITY_USE$IO_SARL_CORE_SCHEDULES$CALLER_2.every(waitTask, 10, _function);
@@ -286,6 +295,8 @@ public class human_child_male extends Agent {
       return false;
     if (Float.floatToIntBits(other.currentY) != Float.floatToIntBits(this.currentY))
       return false;
+    if (other.evacuated != this.evacuated)
+      return false;
     return super.equals(obj);
   }
   
@@ -303,6 +314,7 @@ public class human_child_male extends Agent {
     result = prime * result + this.agent_id;
     result = prime * result + Float.floatToIntBits(this.currentX);
     result = prime * result + Float.floatToIntBits(this.currentY);
+    result = prime * result + this.evacuated;
     return result;
   }
   
