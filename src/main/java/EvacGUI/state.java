@@ -3,15 +3,25 @@ package EvacGUI;
 public class state {
 	static int agent_number = 0;
 
+	public void runGraph() {
+		ScatterAdd demo = new ScatterAdd("Distance / Push Correlation");// runs
+		// the
+		// program
+		// demo.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		demo.pack();
+		demo.setLocationRelativeTo(null);
+		demo.setVisible(true);
+
+	}
+
 	public static float getCoordX(int agent_id) {
 		int index = 0;
-		
-		
+
 		for (int i = 0; i < EvacGUI.canvas.ballarray.size(); i++) {
 			if (EvacGUI.canvas.ballarray.get(i).ball_id == agent_id)
 				index = i;
 		}
-	
+
 		EvacGUI.canvas.ball temp_ball = EvacGUI.canvas.ballarray.get(index);
 		return temp_ball.x_pos;
 	}
@@ -22,48 +32,56 @@ public class state {
 			if (EvacGUI.canvas.ballarray.get(i).ball_id == agent_id)
 				index = i;
 		}
-	
+
 		EvacGUI.canvas.ball temp_ball = EvacGUI.canvas.ballarray.get(index);
 		return temp_ball.y_pos;
 	}
 
-	public void calculatePushAmount(){
-		float sum=0;
-		float push=0;
-		for(int i=0;i<canvas.pushamountarray.size();i++){
-			push=canvas.pushamountarray.get(i);
-			sum=sum+push;
+	public void calculatePushAmount() {
+		float sum = 0;
+		float push = 0;
+		for (int i = 0; i < canvas.pushamountarray.size(); i++) {
+			push = canvas.pushamountarray.get(i);
+			sum = sum + push;
 		}
-		float pushaverage=sum/canvas.pushamountarray.size();
+		float pushaverage = sum / canvas.pushamountarray.size();
 		System.out.println("the push average is" + pushaverage);
-		
+		sum = 0;
+		double distance;
+		double sums = 0;
+		for (int i = 0; i < canvas.distancearray.size(); i++) {
+			distance = canvas.distancearray.get(i);
+			sums = sums + distance;
+		}
+		sums = sums / canvas.distancearray.size();
+		System.out.println("the distance average is" + sums);
+
 	}
-	
-	
-	public int getPushAmount(int agent_id){
-		int index = 0;
+
+	public int getPushAmount(int agent_id) {
+		int index = -1;
 		for (int i = 0; i < EvacGUI.canvas.ballarray.size(); i++) {
 			if (EvacGUI.canvas.ballarray.get(i).ball_id == agent_id)
 				index = i;
 		}
 		return canvas.ballarray.get(index).pushamount;
 	}
-	
-	public synchronized static void change_direction(int agent_id, float goal_x, float goal_y) {
+
+	public synchronized static void change_direction(int agent_id, float goal_x, float goal_y, int mode) {
 		int index = -1;
-		
-		if (EvacGUI.canvas.ballarray.size() < 1){
-			return ;
+
+		if (EvacGUI.canvas.ballarray.size() < 1) {
+			return;
 		}
-		
+
 		for (int i = 0; i < EvacGUI.canvas.ballarray.size(); i++) {
 			if (EvacGUI.canvas.ballarray.get(i).ball_id == agent_id)
 				index = i;
 		}
-		
+
 		float x = EvacGUI.canvas.ballarray.get(index).x_pos;
 		float y = EvacGUI.canvas.ballarray.get(index).y_pos;
-		//System.out.println("change direction for " + agent_id);
+		// System.out.println("change direction for " + agent_id);
 		float diff_x = goal_x - x;
 		float diff_y = goal_y - y;
 		float diff_xx = 0;
@@ -77,6 +95,9 @@ public class state {
 		} else
 			diff_yy = diff_y;
 		double intensity = java.lang.Math.sqrt(diff_xx * diff_xx + diff_yy * diff_yy);
+		if (mode == 0) {
+			EvacGUI.canvas.ballarray.get(index).distance = intensity;
+		}
 		diff_x = (float) (diff_x / intensity);
 		diff_y = (float) (diff_y / intensity);
 		/*
@@ -87,7 +108,7 @@ public class state {
 		 */
 		EvacGUI.canvas.ballarray.get(index).dir_x = -diff_x;
 		EvacGUI.canvas.ballarray.get(index).dir_y = -diff_y;// normalized_diff_y;
-		
+
 		// System.out.println(normalized_diff_y);
 
 	}
@@ -101,19 +122,18 @@ public class state {
 		float exp_min;
 		float door_x;
 		float door_y;
-		//float goal_x = 0;
-		//float goal_y = 0;
-		
-		
-		if (EvacGUI.canvas.ballarray.size() < 1){
-			return ;
+		// float goal_x = 0;
+		// float goal_y = 0;
+
+		if (EvacGUI.canvas.ballarray.size() < 1) {
+			return;
 		}
-		
+
 		for (int j = 0; j < EvacGUI.canvas.ballarray.size(); j++) {
 			if (EvacGUI.canvas.ballarray.get(j).ball_id == agent_id)
 				index = j;
 		}
-		
+
 		float getX = EvacGUI.state.getCoordX(index);
 		float getY = EvacGUI.state.getCoordY(index);
 
@@ -129,47 +149,49 @@ public class state {
 			}
 		}
 		// define
-		EvacGUI.state.change_direction(agent_id, EvacGUI.canvas.ballarray.get(index).goal_x, EvacGUI.canvas.ballarray.get(index).goal_y);
+		EvacGUI.state.change_direction(agent_id, EvacGUI.canvas.ballarray.get(index).goal_x,
+				EvacGUI.canvas.ballarray.get(index).goal_y, 0);
 		minDis = 999999;
 
 	}
-	
-	public synchronized void reCalcDirection(int agent_id){
-		int index=-1;
+
+	public synchronized void reCalcDirection(int agent_id) {
+		int index = -1;
 		for (int i = 0; i < EvacGUI.canvas.ballarray.size(); i++) {
 			if (EvacGUI.canvas.ballarray.get(i).ball_id == agent_id)
 				index = i;
-				break;
+			break;
 		}
-		if(index==-1)
+		if (index == -1)
 			return;
-		
-		EvacGUI.state.change_direction(agent_id, EvacGUI.canvas.ballarray.get(index).goal_x, EvacGUI.canvas.ballarray.get(index).goal_y);
+
+		EvacGUI.state.change_direction(agent_id, EvacGUI.canvas.ballarray.get(index).goal_x,
+				EvacGUI.canvas.ballarray.get(index).goal_y, 1);
 	}
 
 	public synchronized int collisionAvoid(int agent_id) {
-		
-		//matching the agent_id and real array index
+
+		// matching the agent_id and real array index
 		int index = -1;
 		for (int i = 0; i < EvacGUI.canvas.ballarray.size(); i++) {
-			if (EvacGUI.canvas.ballarray.get(i).ball_id == agent_id){
+			if (EvacGUI.canvas.ballarray.get(i).ball_id == agent_id) {
 				index = i;
 				break;
 			}
 		}
-		if(index==-1){
+		if (index == -1) {
 			return 0;
-			
+
 		}
-	    float x = canvas.ballarray.get(index).x_pos;
+		float x = canvas.ballarray.get(index).x_pos;
 		float y = canvas.ballarray.get(index).y_pos;
 		float otherx = 0;
 		float othery = 0;
 		if (canvas.ballarray.get(index).backup_dirx != -1) {
 			canvas.ballarray.get(index).dir_x = canvas.ballarray.get(index).backup_dirx;
 			canvas.ballarray.get(index).dir_y = canvas.ballarray.get(index).backup_diry;
-			canvas.ballarray.get(index).backup_dirx=-1;
-			canvas.ballarray.get(index).backup_diry=-1;
+			canvas.ballarray.get(index).backup_dirx = -1;
+			canvas.ballarray.get(index).backup_diry = -1;
 		}
 		for (int i = 0; i < canvas.ballarray.size(); i++) {
 			otherx = canvas.ballarray.get(i).x_pos;
@@ -180,13 +202,17 @@ public class state {
 				x = -x;
 			if (y < 0)
 				y = -y;
-			if (x + y < 10&&canvas.ballarray.get(index).backup_dirx == -1) {
+			if (x + y < 10 && canvas.ballarray.get(index).backup_dirx == -1) {
 				if (agent_id != canvas.ballarray.get(i).ball_id) {
 					/*
-					canvas.ballarray.get(index).backup_dirx = canvas.ballarray.get(index).dir_x;
-					canvas.ballarray.get(index).backup_diry = canvas.ballarray.get(index).dir_y;
-					canvas.ballarray.get(index).dir_x =  -canvas.ballarray.get(index).dir_x;
-					canvas.ballarray.get(index).dir_y =  -canvas.ballarray.get(index).dir_y;
+					 * canvas.ballarray.get(index).backup_dirx =
+					 * canvas.ballarray.get(index).dir_x;
+					 * canvas.ballarray.get(index).backup_diry =
+					 * canvas.ballarray.get(index).dir_y;
+					 * canvas.ballarray.get(index).dir_x =
+					 * -canvas.ballarray.get(index).dir_x;
+					 * canvas.ballarray.get(index).dir_y =
+					 * -canvas.ballarray.get(index).dir_y;
 					 */
 					canvas.ballarray.get(index).pushamount++;
 				}

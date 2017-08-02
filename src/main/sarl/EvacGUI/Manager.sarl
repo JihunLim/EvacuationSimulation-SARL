@@ -83,6 +83,8 @@ agent Manager {
 						isSimulOpened = false
 						// print the information who escaped people or dead people etc.
 						println("the number of man who lived from the hell is : " + livedManCount)
+						var states = new state()
+						states.runGraph()
 						startflag = 0
 
 						wake(new StopSimul)

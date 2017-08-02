@@ -105,6 +105,8 @@ public class Manager extends Agent {
           if (((!this.hasHuman) && base_frame.isButtonClicked)) {
             this.isSimulOpened = false;
             InputOutput.<String>println(("the number of man who lived from the hell is : " + Integer.valueOf(this.livedManCount)));
+            EvacGUI.state states = new EvacGUI.state();
+            states.runGraph();
             base_frame.startflag = 0;
             Behaviors _$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS$CALLER_1 = this.$castSkill(Behaviors.class, (this.$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS == null || this.$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS.get() == null) ? (this.$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS = this.$getSkill(Behaviors.class)) : this.$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS);
             StopSimul _stopSimul = new StopSimul();

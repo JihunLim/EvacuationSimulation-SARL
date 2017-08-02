@@ -18,12 +18,14 @@ public class canvas extends JComponent implements KeyListener,MouseMotionListene
     static int wall_width = 800;
     static int wall_height = 500;
     static Integer temp= new Integer(0);
+    static Double tempf = new Double(0);
     boolean bg_change=false;
     int color=254,incr=1;
     //a   array
     static ArrayList<ball> ballarray;
     static ArrayList<My_box> wallarray;
     static ArrayList<Integer> pushamountarray;
+    static ArrayList<Double> distancearray;
     ArrayList<ball> tempballarray;
     ball temp_ball = new ball();
     ball evac_ball = new ball();
@@ -37,6 +39,7 @@ public class canvas extends JComponent implements KeyListener,MouseMotionListene
         ballarray=new ArrayList(1);
         wallarray=new ArrayList(1);
         pushamountarray = new ArrayList(1);
+        distancearray = new ArrayList(1);
         b1=new My_box(0,0,wall_width,10);//top
         b2=new My_box(0,0,10,wall_height);//top-right
         b3=new My_box(0,0,wall_width+10,10);//bottom-left
@@ -201,9 +204,11 @@ public class canvas extends JComponent implements KeyListener,MouseMotionListene
                         tempballarray = ballarray;
                         evac_ball = temp_ball;
                         temp=temp_ball.pushamount;
-                 
-                        tempballarray.remove(temp_ball); 
                         pushamountarray.add(temp);
+                        tempf=temp_ball.distance;
+                        distancearray.add(tempf);
+                        tempballarray.remove(temp_ball); 
+                   
                         base_frame.ballremoved();
                         System.out.println("removed a ball!");
                         System.out.printf("arraylist : %d" , ballarray.size());
@@ -272,6 +277,7 @@ public class canvas extends JComponent implements KeyListener,MouseMotionListene
          float goal_x=0;
          float goal_y=0;
          int pushamount = 0;
+         double distance=0;
         ball()
         {
         }

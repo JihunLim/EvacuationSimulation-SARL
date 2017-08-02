@@ -76,7 +76,7 @@ agent human_child_male {
 				evacuated = state.collisionAvoid(agent_id)
 				state.reCalcDirection(agent_id)
 				if (evacuated == 0) {
-					println(agent_id + "evacuated with push amount " + state.getPushAmount(agent_id))
+					//println(agent_id + "evacuated with push amount " + state.getPushAmount(agent_id))
 					state.calculatePushAmount
 					killMe
 				}
