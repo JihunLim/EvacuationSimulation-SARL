@@ -37,7 +37,7 @@ public class state {
 		return temp_ball.y_pos;
 	}
 
-	public void calculatePushAmount() {
+	public float calculatePushAmount() {
 		float sum = 0;
 		float push = 0;
 		for (int i = 0; i < canvas.pushamountarray.size(); i++) {
@@ -55,7 +55,8 @@ public class state {
 		}
 		sums = sums / canvas.distancearray.size();
 		System.out.println("the distance average is" + sums);
-
+		 
+		return pushaverage;
 	}
 
 	public int getPushAmount(int agent_id) {
