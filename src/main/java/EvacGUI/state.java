@@ -1,5 +1,7 @@
 package EvacGUI;
 
+import java.awt.geom.Area;
+
 public class state {
 	static int agent_number = 0;
 
@@ -101,7 +103,13 @@ public class state {
 	}
 
 	public synchronized void collisionAvoid(int agent_id) {
-
+		int index=-1;
+		for (int i = 0; i < EvacGUI.canvas.ballarray.size(); i++) {
+			if (EvacGUI.canvas.ballarray.get(i).ball_id == agent_id)
+				index = i;
+		}
+		agent_id=index;
+		
 	    float x = canvas.ballarray.get(agent_id).x_pos;
 		float y = canvas.ballarray.get(agent_id).y_pos;
 		float otherx = 0;
@@ -121,12 +129,19 @@ public class state {
 				x = -x;
 			if (y < 0)
 				y = -y;
-			if (x + y < 10&&canvas.ballarray.get(agent_id).backup_dirx == -1) {
-				if (agent_id != canvas.ballarray.get(i).ball_id) {
+			if (x + y < 20&&canvas.ballarray.get(agent_id).backup_dirx == -1) {
+				 int choice=(int) (Math.random()*2%(2));
+				if (agent_id != canvas.ballarray.get(i).ball_id&&choice==0) {
 					canvas.ballarray.get(agent_id).backup_dirx = canvas.ballarray.get(agent_id).dir_x;
 					canvas.ballarray.get(agent_id).backup_diry = canvas.ballarray.get(agent_id).dir_y;
 					canvas.ballarray.get(agent_id).dir_x =  -canvas.ballarray.get(agent_id).dir_x;
 					canvas.ballarray.get(agent_id).dir_y =  -canvas.ballarray.get(agent_id).dir_y;
+				}
+				if (agent_id != canvas.ballarray.get(i).ball_id&&choice==1) {
+					canvas.ballarray.get(agent_id).backup_dirx = canvas.ballarray.get(agent_id).dir_x;
+					canvas.ballarray.get(agent_id).backup_diry = canvas.ballarray.get(agent_id).dir_y;
+					canvas.ballarray.get(agent_id).dir_x =  0;
+					canvas.ballarray.get(agent_id).dir_y =  0;
 				}
 			}
 
